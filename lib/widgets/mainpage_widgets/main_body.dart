@@ -1,27 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:getwidget/components/dropdown/gf_dropdown.dart';
+import 'package:quiz_snowman_app/widgets/global/dropdown_list.dart';
+
+import '../global/global_button.dart';
 
 class MainPageBody extends StatefulWidget {
   const MainPageBody({Key? key}) : super(key: key);
 
+
   @override
+  
   State<MainPageBody> createState() => _MainPageBodyState();
 }
 
 class _MainPageBodyState extends State<MainPageBody> {
   @override
+
   Widget build(BuildContext context) {
+
+    String dropdown;
+
+
     return Container(
       color: const Color.fromARGB(255, 191, 126, 174),
       child: Expanded(
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(40),
+              padding: const EdgeInsets.all(24),
               child: Container(
-                height: 200,
-                decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('lib/Assets/ideas.png'))),
+                height: MediaQuery.of(context).size.height * 0.25,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('lib/Assets/ideas.png'))),
               ),
-            )
+            ),
+            const Padding(
+              padding: EdgeInsets.all(16),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(16),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(16),
+            ),
+            GlobalButton(onChanged: () {  }, text: 'God Job',)
           ],
         ),
       ),
