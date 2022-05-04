@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../global/dropdown_list.dart';
+import 'package:multiselect/multiselect.dart';
 import '../global/global_button.dart';
 
 class MainPageBody extends StatefulWidget {
@@ -11,6 +11,18 @@ class MainPageBody extends StatefulWidget {
 
 class _MainPageBodyState extends State<MainPageBody> {
   List<String> slectedCategories = [];
+  List<String> categoryList = [
+  "Arts & Literature",
+  "Film & TV",
+  "Food & Drink",
+  "General Knowledge",
+  "Geography",
+  "History",
+  "Music",
+  "Science",
+  "Society & Culture",
+  "Sport & Leisure"
+];
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +40,17 @@ class _MainPageBodyState extends State<MainPageBody> {
                         image: AssetImage('lib/Assets/ideas.png'))),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: MultiCategorySelector(),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: DropDownMultiSelect(
+                  onChanged: (List<String> x) {
+                    setState(() {
+                      slectedCategories = x;
+                    });
+                  },
+                  options: categoryList,
+                  selectedValues: slectedCategories,
+                  whenEmpty: 'Select Something'),
             ),
             const Padding(
               padding: EdgeInsets.all(16),
