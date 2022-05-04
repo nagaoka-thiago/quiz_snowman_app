@@ -21,7 +21,7 @@ class _GlobalButtonState extends State<GlobalButton> {
       onPressed: widget.onPressed,
       child: Text(
         widget.text,
-        style: GoogleFonts.robotoMono(),
+        style: GoogleFonts.robotoMono(fontWeight: FontWeight.bold, fontSize: 32),
       ),
     );
   }
