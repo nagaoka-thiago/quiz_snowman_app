@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_snowman_app/models/UserApi.dart';
+import 'package:quiz_snowman_app/models/user_api.dart';
 import 'package:quiz_snowman_app/pages/main_page.dart';
 import 'package:quiz_snowman_app/pages/register_page.dart';
 import 'package:quiz_snowman_app/widgets/global/global_button.dart';
 
 import 'package:dio/dio.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginPageBodyWidget extends StatelessWidget {
   const LoginPageBodyWidget({Key? key}) : super(key: key);
@@ -14,8 +13,8 @@ class LoginPageBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
-    TextEditingController _emailController = new TextEditingController();
-    TextEditingController _passwordController = new TextEditingController();
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
 
     return Container(
       color: const Color.fromARGB(255, 191, 126, 174),
