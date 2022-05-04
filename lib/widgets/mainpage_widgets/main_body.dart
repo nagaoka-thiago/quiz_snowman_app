@@ -1,26 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/components/dropdown/gf_dropdown.dart';
-import 'package:quiz_snowman_app/widgets/global/dropdown_list.dart';
 
 import '../global/global_button.dart';
 
 class MainPageBody extends StatefulWidget {
   const MainPageBody({Key? key}) : super(key: key);
 
-
   @override
-  
   State<MainPageBody> createState() => _MainPageBodyState();
 }
 
 class _MainPageBodyState extends State<MainPageBody> {
   @override
-
   Widget build(BuildContext context) {
-
-    String dropdown;
-
-
     return Container(
       color: const Color.fromARGB(255, 191, 126, 174),
       child: Expanded(
@@ -44,7 +35,13 @@ class _MainPageBodyState extends State<MainPageBody> {
             const Padding(
               padding: EdgeInsets.all(16),
             ),
-            GlobalButton(onChanged: () {  }, text: 'God Job',)
+            Padding(
+              padding: const EdgeInsets.all(24),
+              child: GlobalButton(
+                text: 'Create Quiz',
+                onPressed: () {},
+              ),
+            )
           ],
         ),
       ),

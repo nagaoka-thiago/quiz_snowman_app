@@ -1,5 +1,23 @@
 import 'package:flutter/material.dart';
 
+class DropDownListMultiselect extends StatefulWidget {
+  const DropDownListMultiselect({ Key? key }) : super(key: key);
+
+  @override
+  State<DropDownListMultiselect> createState() => _DropDownListMultiselect();
+}
+
+class _DropDownListMultiselect extends State<DropDownListMultiselect> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
+  }
+}
+
+
+
 List<DropdownMenuItem<String>> get dropdownCategories {
     List<DropdownMenuItem<String>> menuCategories = [
       const DropdownMenuItem(child: Text("Any"), value: "Any"),
