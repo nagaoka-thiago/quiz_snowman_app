@@ -10,19 +10,42 @@ class MainPageBody extends StatefulWidget {
 }
 
 class _MainPageBodyState extends State<MainPageBody> {
+  var selectedValue = "Easy";
   List<String> slectedCategories = [];
   List<String> categoryList = [
-  "Arts & Literature",
-  "Film & TV",
-  "Food & Drink",
-  "General Knowledge",
-  "Geography",
-  "History",
-  "Music",
-  "Science",
-  "Society & Culture",
-  "Sport & Leisure"
-];
+    "Arts & Literature",
+    "Film & TV",
+    "Food & Drink",
+    "General Knowledge",
+    "Geography",
+    "History",
+    "Music",
+    "Science",
+    "Society & Culture",
+    "Sport & Leisure",
+  ];
+
+  List<int> numberOfQuestion = [
+    5,
+    10,
+    15,
+    20,
+  ];
+
+  List<String> difficultyLevel = [
+    "Easy",
+    "Medium",
+    "Hard",
+  ];
+
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      const DropdownMenuItem(child: Text("Easy"), value: "Easy"),
+      const DropdownMenuItem(child: Text("Medium"), value: "Medium"),
+      const DropdownMenuItem(child: Text("Hard"), value: "Hard"),
+    ];
+    return menuItems;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +78,17 @@ class _MainPageBodyState extends State<MainPageBody> {
             const Padding(
               padding: EdgeInsets.all(16),
             ),
-            const Padding(
-              padding: EdgeInsets.all(16),
-            ),
+            Padding(
+                padding: const EdgeInsets.all(16),
+                child: DropdownButton(
+                  value: selectedValue,
+                  items: dropdownItems,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedValue = newValue!;
+                    });
+                  },
+                )),
             Padding(
               padding: const EdgeInsets.all(24),
               child: GlobalButton(
