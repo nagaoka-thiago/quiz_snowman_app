@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_snowman_app/widgets/loginpage_widgets/login_page_body.dart';
+
+import '../widgets/loginpage_widgets/login_page_body.dart';
 
 class LoginPageWidget extends StatelessWidget {
   const LoginPageWidget({Key? key}) : super(key: key);
