@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../global/dropdown_list.dart';
 import '../global/global_button.dart';
 
 class MainPageBody extends StatefulWidget {
@@ -10,6 +10,8 @@ class MainPageBody extends StatefulWidget {
 }
 
 class _MainPageBodyState extends State<MainPageBody> {
+  List<String> slectedCategories = [];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,6 +30,7 @@ class _MainPageBodyState extends State<MainPageBody> {
             ),
             const Padding(
               padding: EdgeInsets.all(16),
+              child: MultiCategorySelector(),
             ),
             const Padding(
               padding: EdgeInsets.all(16),
