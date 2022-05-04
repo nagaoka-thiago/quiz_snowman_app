@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GlobalButton extends StatefulWidget {
   final Function() onPressed;
@@ -20,10 +21,7 @@ class _GlobalButtonState extends State<GlobalButton> {
       onPressed: widget.onPressed,
       child: Text(
         widget.text,
-        style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 32,
-            fontFamily: 'Roboto Mono'),
+        style: GoogleFonts.robotoMono(),
       ),
     );
   }
