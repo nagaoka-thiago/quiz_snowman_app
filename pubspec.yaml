@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
   getwidget: ^2.0.5
+  multi_select_flutter: ^4.1.2
 
 dev_dependencies:
   flutter_test:
@@ -75,15 +76,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Raleway
-      fonts:
-        - asset: fonts/Raleway-Regular.ttf
-        - asset: fonts/Raleway-Italic.ttf
-          style: italic
     - family: RobotoMono
       fonts:
-        - asset: fonts/RobotoMono-Regular.ttf
-        - asset: fonts/RobotoMono-Bold.ttf
+        - asset: fonts/Roboto_Mono.ttf
           weight: 700
   #
   # For details regarding fonts from package dependencies,
