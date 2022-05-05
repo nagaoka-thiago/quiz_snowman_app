@@ -56,6 +56,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
       child: Scaffold(
           body: SingleChildScrollView(
         child: Container(
+          height: MediaQuery.of(context).size.height,
           color: const Color.fromARGB(255, 191, 126, 174),
           child: Column(
             children: [
