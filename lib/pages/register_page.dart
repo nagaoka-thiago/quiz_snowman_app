@@ -54,70 +54,115 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
     return SafeArea(
       child: Scaffold(
-          body: Container(
-        color: const Color.fromARGB(255, 191, 126, 174),
-        child: Expanded(
+          body: SingleChildScrollView(
+        child: Container(
+          color: const Color.fromARGB(255, 191, 126, 174),
           child: Column(
             children: [
               Padding(
                   padding: const EdgeInsets.all(40),
                   child: Image.asset('lib/Assets/ideas.png',
                       height: (MediaQuery.of(context).size.height - bottom) *
-                          0.10)),
-              Container(
-                margin: const EdgeInsets.only(left: 10, right: 10, top: 49),
-                child: TextField(
-                    controller: firstNameController,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        labelText: "First name")),
+                          0.15)),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: TextField(
+                      controller: firstNameController,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          labelText: "First name")),
+                ),
               ),
-              Container(
-                margin: const EdgeInsets.only(left: 10, right: 10, top: 16),
-                child: TextField(
-                    controller: lastNameController,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        labelText: "Last name")),
+              SizedBox(
+                  height:
+                      (MediaQuery.of(context).size.height - bottom) * 0.015),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: TextField(
+                      controller: lastNameController,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          labelText: "Last name")),
+                ),
               ),
-              Container(
-                margin: const EdgeInsets.only(left: 10, right: 10, top: 19),
-                child: TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        labelText: "E-mail")),
+              SizedBox(
+                  height:
+                      (MediaQuery.of(context).size.height - bottom) * 0.015),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          labelText: "E-mail")),
+                ),
               ),
-              Container(
-                margin: const EdgeInsets.only(left: 10, right: 10, top: 19),
-                child: TextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        labelText: "Password")),
+              SizedBox(
+                  height:
+                      (MediaQuery.of(context).size.height - bottom) * 0.015),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          labelText: "Password")),
+                ),
               ),
-              Container(
-                margin: const EdgeInsets.only(left: 10, right: 10, top: 16),
-                child: TextField(
-                    controller: confirmPasswordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        labelText: "Confirm your password")),
+              SizedBox(
+                  height:
+                      (MediaQuery.of(context).size.height - bottom) * 0.015),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: TextField(
+                      controller: confirmPasswordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          labelText: "Confirm your password")),
+                ),
               ),
+              SizedBox(
+                  height:
+                      (MediaQuery.of(context).size.height - bottom) * 0.015),
               Container(
-                  margin: const EdgeInsets.only(top: 54),
+                  margin: const EdgeInsets.only(top: 54, bottom: 20),
                   child: GlobalButton(
                     text: 'REGISTER',
                     onPressed: () async {
