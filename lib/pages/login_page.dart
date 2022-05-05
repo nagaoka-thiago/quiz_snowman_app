@@ -6,15 +6,38 @@ import '../models/user_api.dart';
 import '../widgets/global/global_button.dart';
 import 'main_page.dart';
 
-class LoginPageWidget extends StatelessWidget {
+class LoginPageWidget extends StatefulWidget {
   const LoginPageWidget({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPageWidget> createState() => _LoginPageWidgetState();
+}
+
+class _LoginPageWidgetState extends State<LoginPageWidget> {
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    emailController.dispose();
+    passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
-
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _passwordController = TextEditingController();
 
     return SafeArea(
       child: Scaffold(
@@ -34,7 +57,7 @@ class LoginPageWidget extends StatelessWidget {
               SizedBox(
                 width: 280,
                 child: TextField(
-                  controller: _emailController,
+                  controller: emailController,
                   decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -51,7 +74,7 @@ class LoginPageWidget extends StatelessWidget {
               SizedBox(
                 width: 280,
                 child: TextField(
-                  controller: _passwordController,
+                  controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
@@ -73,8 +96,8 @@ class LoginPageWidget extends StatelessWidget {
                     Response response = await Dio().post(
                         "https://academy-auth.herokuapp.com/login",
                         data: {
-                          "email": _emailController.text,
-                          "password": _passwordController.text
+                          "email": emailController.text,
+                          "password": passwordController.text
                         });
 
                     UserApi user = UserApi.fromJson(response.data);
@@ -118,7 +141,9 @@ class LoginPageWidget extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => const RegisterPageWidget()));
                   },
-                  child: Text('Register', style: GoogleFonts.robotoMono(fontWeight: FontWeight.bold, fontSize: 16)))
+                  child: Text('Register',
+                      style: GoogleFonts.robotoMono(
+                          fontWeight: FontWeight.bold, fontSize: 16)))
             ],
           ),
         ),
