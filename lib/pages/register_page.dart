@@ -140,7 +140,10 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
                             UserApi user = UserApi.fromJson(response.data);
 
-                            FirebaseFirestore.instance.collection('users').add({
+                            FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(user.sId)
+                                .set({
                               "id": user.sId,
                               "first_name": user.firstName,
                               "last_name": user.lastName,
@@ -151,23 +154,21 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               content:
                                   const Text('User registered with success!'),
                               action: SnackBarAction(
-                                label: 'Undo',
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const MainPage()));
-                                },
+                                label: 'Ok',
+                                onPressed: () {},
                               ),
                             );
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MainPage()));
                           } else {
                             final snackBar = SnackBar(
                               content: const Text('Passwords do not match.'),
                               action: SnackBarAction(
-                                label: 'Undo',
+                                label: 'Ok',
                                 onPressed: () {},
                               ),
                             );
@@ -178,7 +179,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           final snackBar = SnackBar(
                             content: const Text('You need to fill all fields.'),
                             action: SnackBarAction(
-                              label: 'Undo',
+                              label: 'Ok',
                               onPressed: () {},
                             ),
                           );
@@ -188,7 +189,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         final snackBar = SnackBar(
                           content: Text(e.response!.data),
                           action: SnackBarAction(
-                            label: 'Undo',
+                            label: 'Ok',
                             onPressed: () {
                               // Some code to undo the change.
                             },
