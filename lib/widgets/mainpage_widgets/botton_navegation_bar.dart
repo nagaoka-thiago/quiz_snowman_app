@@ -12,6 +12,8 @@ class BottonNavegationBarGlobal extends StatelessWidget {
         Icon(Icons.quiz, size: 50, color: Color.fromARGB(255, 152, 94, 191),),
         Icon(Icons.person, size: 50, color: Color.fromARGB(255, 152, 94, 191),)
       ],
+      buttonBackgroundColor: const Color.fromARGB(255, 242, 169, 80),
+      color: const Color.fromARGB(255, 242, 169, 80),
     );
   }
 }
