@@ -37,7 +37,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var bottom = MediaQuery.of(context).viewInsets.bottom;
+    var bottom = MediaQuery.of(context).viewInsets.bottom; 
 
     return SafeArea(
       child: Scaffold(

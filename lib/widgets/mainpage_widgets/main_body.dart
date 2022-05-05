@@ -97,6 +97,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                       whenEmpty: 'Categories',
                       decoration: InputDecoration(
                         filled: true,
+                        iconColor: const Color.fromARGB(255, 242, 169, 80),
                         counterStyle: GoogleFonts.robotoMono(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -139,6 +140,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                               width: 100,
                               child: DropdownButton(
                                 value: selectedDifficulty,
+                                iconEnabledColor: const Color.fromARGB(255, 242, 169, 80),
                                 alignment: AlignmentDirectional.center,
                                 style: (GoogleFonts.robotoMono(
                                   fontWeight: FontWeight.normal,
@@ -175,6 +177,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                               width: 50,
                               child: DropdownButton(
                                 value: selectedQuestions,
+                                iconEnabledColor: const Color.fromARGB(255, 242, 169, 80),
                                 alignment: AlignmentDirectional.center,
                                 style: (GoogleFonts.robotoMono(
                                   fontWeight: FontWeight.normal,
