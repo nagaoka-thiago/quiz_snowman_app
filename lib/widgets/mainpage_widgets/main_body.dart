@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:multiselect/multiselect.dart';
 import '../global/global_button.dart';
 
@@ -10,7 +11,8 @@ class MainPageBody extends StatefulWidget {
 }
 
 class _MainPageBodyState extends State<MainPageBody> {
-  var selectedValue = "Easy";
+  var selectedDifficulty = "Easy";
+  var selectedQuestions = "10";
   List<String> slectedCategories = [];
   List<String> categoryList = [
     "Arts & Literature",
@@ -47,6 +49,16 @@ class _MainPageBodyState extends State<MainPageBody> {
     return menuItems;
   }
 
+  List<DropdownMenuItem<String>> get dropdownQuestionsLimit {
+    List<DropdownMenuItem<String>> menuItems = [
+      const DropdownMenuItem(child: Text("5"), value: "5"),
+      const DropdownMenuItem(child: Text("10"), value: "10"),
+      const DropdownMenuItem(child: Text("15"), value: "15"),
+      const DropdownMenuItem(child: Text("20"), value: "20"),
+    ];
+    return menuItems;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -75,20 +87,55 @@ class _MainPageBodyState extends State<MainPageBody> {
                   selectedValues: slectedCategories,
                   whenEmpty: 'Select Something'),
             ),
-            const Padding(
-              padding: EdgeInsets.all(16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Difficulty:",style: GoogleFonts.robotoMono(fontWeight: FontWeight.bold, fontSize: 20, color: const Color.fromARGB(255, 242, 169, 80))),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: SizedBox(
+                        height: 50,
+                        width: 100,
+                        child: DropdownButton(
+                          value: selectedDifficulty,
+                          items: dropdownItems,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              selectedDifficulty = newValue!;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: SizedBox(
+                    height: 50,
+                    width: 100,
+                    child: DropdownButton(
+                      value: selectedQuestions,
+                      items: dropdownQuestionsLimit,
+                      onChanged: (String? newValue) {
+                        setState(
+                          () {
+                            selectedQuestions = newValue!;
+                          },
+                        );
+                      },
+                      enableFeedback: true,
+                      iconEnabledColor: Colors.red,
+
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Padding(
-                padding: const EdgeInsets.all(16),
-                child: DropdownButton(
-                  value: selectedValue,
-                  items: dropdownItems,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      selectedValue = newValue!;
-                    });
-                  },
-                )),
             Padding(
               padding: const EdgeInsets.all(24),
               child: GlobalButton(
@@ -97,6 +144,7 @@ class _MainPageBodyState extends State<MainPageBody> {
               ),
             )
           ],
+          
         ),
       ),
     );
