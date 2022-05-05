@@ -105,22 +105,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     final snackBar = SnackBar(
                       content: const Text('Logged in!'),
                       action: SnackBarAction(
-                        label: 'Undo',
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MainPage()));
-                        },
+                        label: 'Ok',
+                        onPressed: () {},
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MainPage()));
                   } on DioError catch (e) {
                     if (e.response!.statusCode == 400) {
                       final snackBar = SnackBar(
                         content: const Text('Invalid e-mail and password!'),
                         action: SnackBarAction(
-                          label: 'Undo',
+                          label: 'Ok',
                           onPressed: () {
                             // Some code to undo the change.
                           },
