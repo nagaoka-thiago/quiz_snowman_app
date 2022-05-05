@@ -75,17 +75,33 @@ class _MainPageBodyState extends State<MainPageBody> {
                         image: AssetImage('lib/Assets/ideas.png'))),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16),
+            Text(
+              "CATEGORIES:",
+              style: GoogleFonts.robotoMono(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.white),
+            ),
+            SizedBox(
+              width: 300,
               child: DropDownMultiSelect(
-                  onChanged: (List<String> x) {
-                    setState(() {
-                      slectedCategories = x;
-                    });
-                  },
-                  options: categoryList,
-                  selectedValues: slectedCategories,
-                  whenEmpty: 'Select Something'),
+                onChanged: (List<String> x) {
+                  setState(() {
+                    slectedCategories = x;
+                  });
+                },
+                options: categoryList,
+                selectedValues: slectedCategories,
+                whenEmpty: "hello",
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20.0),
+                    ),
+                    
+                  ),
+                ),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -94,7 +110,13 @@ class _MainPageBodyState extends State<MainPageBody> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Difficulty:",style: GoogleFonts.robotoMono(fontWeight: FontWeight.bold, fontSize: 20, color: const Color.fromARGB(255, 242, 169, 80))),
+                    Text(
+                      "DIFFICULTY:",
+                      style: GoogleFonts.robotoMono(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.white),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: SizedBox(
@@ -113,26 +135,38 @@ class _MainPageBodyState extends State<MainPageBody> {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: SizedBox(
-                    height: 50,
-                    width: 100,
-                    child: DropdownButton(
-                      value: selectedQuestions,
-                      items: dropdownQuestionsLimit,
-                      onChanged: (String? newValue) {
-                        setState(
-                          () {
-                            selectedQuestions = newValue!;
-                          },
-                        );
-                      },
-                      enableFeedback: true,
-                      iconEnabledColor: Colors.red,
-
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "LEVEL:",
+                      style: GoogleFonts.robotoMono(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.white),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: SizedBox(
+                        height: 50,
+                        width: 100,
+                        child: DropdownButton(
+                          value: selectedQuestions,
+                          items: dropdownQuestionsLimit,
+                          onChanged: (String? newValue) {
+                            setState(
+                              () {
+                                selectedQuestions = newValue!;
+                              },
+                            );
+                          },
+                          enableFeedback: true,
+                          iconEnabledColor: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -144,7 +178,6 @@ class _MainPageBodyState extends State<MainPageBody> {
               ),
             )
           ],
-          
         ),
       ),
     );
