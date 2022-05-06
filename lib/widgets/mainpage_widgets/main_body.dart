@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:multiselect/multiselect.dart';
 import 'package:quiz_snowman_app/functions/questions.dart';
+import 'package:quiz_snowman_app/pages/question_page.dart';
 import '../../models/user_api.dart';
 import '../global/global_button.dart';
 
@@ -222,9 +223,12 @@ class _MainPageBodyState extends State<MainPageBody> {
                       .toList()
                       .join(',');
                   String difficultyToPath = selectedDifficulty.toLowerCase();
-
-                  getQuestions(
-                      categoriesToPath, selectedQuestions, difficultyToPath);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => QuestionPageWidget(
+                              questions: getQuestions(categoriesToPath,
+                                  selectedQuestions, difficultyToPath))));
                 },
               ),
             )
