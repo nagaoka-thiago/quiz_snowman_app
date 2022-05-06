@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:multiselect/multiselect.dart';
+import 'package:quiz_snowman_app/functions/questions.dart';
+import '../../models/user_api.dart';
 import '../global/global_button.dart';
 
 class MainPageBody extends StatefulWidget {
-  const MainPageBody({Key? key}) : super(key: key);
+  final UserApi user;
+  const MainPageBody({Key? key, required this.user}) : super(key: key);
 
   @override
   State<MainPageBody> createState() => _MainPageBodyState();
@@ -13,7 +16,7 @@ class MainPageBody extends StatefulWidget {
 class _MainPageBodyState extends State<MainPageBody> {
   var selectedDifficulty = "Easy";
   var selectedQuestions = "10";
-  List<String> slectedCategories = [];
+  List<String> selectedCategories = [];
   List<String> categoryList = [
     "Arts & Literature",
     "Film & TV",
@@ -89,11 +92,11 @@ class _MainPageBodyState extends State<MainPageBody> {
                     child: DropDownMultiSelect(
                       onChanged: (List<String> x) {
                         setState(() {
-                          slectedCategories = x;
+                          selectedCategories = x;
                         });
                       },
                       options: categoryList,
-                      selectedValues: slectedCategories,
+                      selectedValues: selectedCategories,
                       whenEmpty: 'Categories',
                       decoration: InputDecoration(
                         filled: true,
@@ -140,7 +143,8 @@ class _MainPageBodyState extends State<MainPageBody> {
                               width: 100,
                               child: DropdownButton(
                                 value: selectedDifficulty,
-                                iconEnabledColor: const Color.fromARGB(255, 242, 169, 80),
+                                iconEnabledColor:
+                                    const Color.fromARGB(255, 242, 169, 80),
                                 alignment: AlignmentDirectional.center,
                                 style: (GoogleFonts.robotoMono(
                                   fontWeight: FontWeight.normal,
@@ -177,7 +181,8 @@ class _MainPageBodyState extends State<MainPageBody> {
                               width: 50,
                               child: DropdownButton(
                                 value: selectedQuestions,
-                                iconEnabledColor: const Color.fromARGB(255, 242, 169, 80),
+                                iconEnabledColor:
+                                    const Color.fromARGB(255, 242, 169, 80),
                                 alignment: AlignmentDirectional.center,
                                 style: (GoogleFonts.robotoMono(
                                   fontWeight: FontWeight.normal,
@@ -208,7 +213,19 @@ class _MainPageBodyState extends State<MainPageBody> {
               padding: const EdgeInsets.all(16),
               child: GlobalButton(
                 text: 'Create Quiz',
-                onPressed: () {},
+                onPressed: () {
+                  String categoriesToPath = selectedCategories
+                      .map((category) => category
+                          .toLowerCase()
+                          .replaceAll(' ', '_')
+                          .replaceAll('&', 'and'))
+                      .toList()
+                      .join(',');
+                  String difficultyToPath = selectedDifficulty.toLowerCase();
+
+                  getQuestions(
+                      categoriesToPath, selectedQuestions, difficultyToPath);
+                },
               ),
             )
           ],
