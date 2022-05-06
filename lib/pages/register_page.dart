@@ -59,10 +59,10 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
             child: Column(
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(40),
+                    padding: const EdgeInsets.all(32),
                     child: Image.asset('lib/Assets/ideas.png',
-                        height: (MediaQuery.of(context).size.height - bottom) *
-                            0.15)),
+                        height: (MediaQuery.of(context).size.height - bottom * 2) *
+                            0.1)),
                 SizedBox(
                   width: 280,
                   child: Container(
@@ -76,12 +76,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               borderSide: const BorderSide(color: Colors.black),
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            labelText: "First name")),
+                            labelText: "FIRST NAME")),
                   ),
                 ),
                 SizedBox(
                     height:
-                        (MediaQuery.of(context).size.height - bottom) * 0.015),
+                        (MediaQuery.of(context).size.height - bottom) * 0.01),
                 SizedBox(
                   width: 280,
                   child: Container(
@@ -95,12 +95,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               borderSide: const BorderSide(color: Colors.black),
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            labelText: "Last name")),
+                            labelText: "LAST NAME")),
                   ),
                 ),
                 SizedBox(
                     height:
-                        (MediaQuery.of(context).size.height - bottom) * 0.015),
+                        (MediaQuery.of(context).size.height - bottom) * 0.01),
                 SizedBox(
                   width: 280,
                   child: Container(
@@ -114,12 +114,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               borderSide: const BorderSide(color: Colors.black),
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            labelText: "E-mail")),
+                            labelText: "E-MAIL")),
                   ),
                 ),
                 SizedBox(
                     height:
-                        (MediaQuery.of(context).size.height - bottom) * 0.015),
+                        (MediaQuery.of(context).size.height - bottom) * 0.01),
                 SizedBox(
                   width: 280,
                   child: Container(
@@ -134,12 +134,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               borderSide: const BorderSide(color: Colors.black),
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            labelText: "Password")),
+                            labelText: "PASSWORD")),
                   ),
                 ),
                 SizedBox(
                     height:
-                        (MediaQuery.of(context).size.height - bottom) * 0.015),
+                        (MediaQuery.of(context).size.height - bottom) * 0.01),
                 SizedBox(
                   width: 280,
                   child: Container(
@@ -154,12 +154,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               borderSide: const BorderSide(color: Colors.black),
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            labelText: "Confirm your password")),
+                            labelText: "CONFIRM YOUR PASSWORD")),
                   ),
                 ),
                 SizedBox(
                     height:
-                        (MediaQuery.of(context).size.height - bottom) * 0.1),
+                        (MediaQuery.of(context).size.height - bottom * 2) * 0.05),
                 GlobalButton(
                   text: 'REGISTER',
                   onPressed: () async {
