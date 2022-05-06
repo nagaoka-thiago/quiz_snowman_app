@@ -91,6 +91,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 width: MediaQuery.of(context).size.width,
                                 child: TextField(
                                     controller: passwordController,
+                                    obscureText: true,
                                     decoration: InputDecoration(
                                         filled: true,
                                         fillColor: Colors.white,
@@ -110,6 +111,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 width: MediaQuery.of(context).size.width,
                                 child: TextField(
                                     controller: confirmPasswordController,
+                                    obscureText: true,
                                     decoration: InputDecoration(
                                         filled: true,
                                         fillColor: Colors.white,
@@ -129,8 +131,72 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                     margin: const EdgeInsets.only(top: 10, bottom: 10),
                     child: isEdit
                         ? GlobalButton(
-                            onPressed: () {
-                              //Dio().patch()
+                            onPressed: () async {
+                              if (passwordController.text.isNotEmpty &&
+                                  confirmPasswordController.text.isNotEmpty) {
+                                if (passwordController.text.compareTo(
+                                        confirmPasswordController.text) ==
+                                    0) {
+                                  UserApi newUser = widget.user;
+                                  newUser.password = passwordController.text;
+                                  try {
+                                    Response response = await Dio().patch(
+                                        'https://academy-auth.herokuapp.com/update',
+                                        data: {
+                                          'email': newUser.email,
+                                          'new_password': newUser.password
+                                        },
+                                        options: Options(headers: {
+                                          'x-access-token': newUser.token
+                                        }));
+                                    UserApi userReturned =
+                                        UserApi.fromJson(response.data);
+
+                                    final snackBar = SnackBar(
+                                      content: const Text(
+                                          'User\'s password updated successfully.'),
+                                      action: SnackBarAction(
+                                        label: 'Ok',
+                                        onPressed: () {},
+                                      ),
+                                    );
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                  } on DioError catch (e) {
+                                    final snackBar = SnackBar(
+                                      content: Text(e.message),
+                                      action: SnackBarAction(
+                                        label: 'Ok',
+                                        onPressed: () {},
+                                      ),
+                                    );
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                  }
+                                } else {
+                                  final snackBar = SnackBar(
+                                    content: const Text(
+                                        'Your passwords don\'t match eachother.'),
+                                    action: SnackBarAction(
+                                      label: 'Ok',
+                                      onPressed: () {},
+                                    ),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                }
+                              } else {
+                                final snackBar = SnackBar(
+                                  content: const Text(
+                                      'You need to fill your new password and confirm it.'),
+                                  action: SnackBarAction(
+                                    label: 'Ok',
+                                    onPressed: () {},
+                                  ),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
                             },
                             text: 'UPDATE')
                         : GlobalButton(
