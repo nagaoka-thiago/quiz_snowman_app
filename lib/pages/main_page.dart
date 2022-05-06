@@ -13,7 +13,7 @@ class MainPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: MainPageBody(user: user),
-        bottomNavigationBar: BottonNavegationBarGlobal(),
+        bottomNavigationBar: const BottonNavegationBarGlobal(),
       ),
     );
   }
