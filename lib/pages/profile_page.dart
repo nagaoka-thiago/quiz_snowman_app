@@ -43,92 +43,104 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 191, 126, 174),
-        body: Center(
+        body: Container(
+          alignment: Alignment.topCenter,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(40),
+                    padding: const EdgeInsets.all(24),
                     child: Image.asset(
                       'lib/Assets/ideas.png',
-                      height:
-                          (MediaQuery.of(context).size.height - bottom) * 0.2,
-                    )),
-                const SizedBox(height: 30),
-                Container(
-                    margin: const EdgeInsets.only(left: 36, right: 18),
-                    padding: const EdgeInsets.only(left: 5, right: 5),
-                    width: MediaQuery.of(context).size.width,
-                    height: 400,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: const Color.fromRGBO(101, 48, 217, 0.37),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('First name: ' + widget.user.firstName!,
-                            style: GoogleFonts.robotoMono(
-                                color: Colors.white, fontSize: 20)),
-                        const SizedBox(height: 5),
-                        Text('Last name: ' + widget.user.lastName!,
-                            style: GoogleFonts.robotoMono(
-                                color: Colors.white, fontSize: 20)),
-                        const SizedBox(height: 5),
-                        Text('E-mail: ',
-                            style: GoogleFonts.robotoMono(
-                                color: Colors.white, fontSize: 20)),
-                        const SizedBox(height: 5),
-                        Text(widget.user.email!,
-                            style: GoogleFonts.robotoMono(
-                                color: Colors.white, fontSize: 20)),
-                        const SizedBox(height: 10),
-                        isEdit
-                            ? SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: TextField(
-                                    controller: passwordController,
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        border: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.black),
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                        ),
-                                        hintText: 'Password'),
-                                    style: GoogleFonts.robotoMono(
-                                        fontSize: 20, color: Colors.black)))
-                            : const Text(''),
-                        const SizedBox(height: 10),
-                        isEdit
-                            ? SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: TextField(
-                                    controller: confirmPasswordController,
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        border: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.black),
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                        ),
-                                        hintText: 'Confirm password'),
-                                    style: GoogleFonts.robotoMono(
-                                        fontSize: 20, color: Colors.black)))
-                            : const Text('')
-                      ],
+                      height: (MediaQuery.of(context).size.height - bottom * 2) * 0.2,
                     )),
                 Container(
-                    margin: const EdgeInsets.only(top: 10, bottom: 10),
+                  padding: const EdgeInsets.all(16),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: const Color.fromRGBO(101, 48, 217, 0.37),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('NAME: ',
+                          style: GoogleFonts.robotoMono(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 3),
+                      Text(widget.user.firstName!,
+                          style: GoogleFonts.robotoMono(
+                              color: Colors.white, fontSize: 18)),
+                      const SizedBox(height: 12),
+                      Text('LAST NAME: ',
+                          style: GoogleFonts.robotoMono(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 3),
+                      Text(widget.user.lastName!,
+                          style: GoogleFonts.robotoMono(
+                              color: Colors.white, fontSize: 18)),
+                      const SizedBox(height: 12),
+                      Text('E-MAIL: ',
+                          style: GoogleFonts.robotoMono(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 3),
+                      Text(widget.user.email!,
+                          style: GoogleFonts.robotoMono(
+                              color: Colors.white, fontSize: 18)),
+                      const SizedBox(height: 12),
+                      isEdit
+                          ? SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: TextField(
+                                  controller: passwordController,
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(
+                                        borderSide:
+                                            const BorderSide(color: Colors.black),
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      hintText: 'PASSWORD'),
+                                  style: GoogleFonts.robotoMono(
+                                      fontSize: 16, color: Colors.black)))
+                          : const Text(''),
+                      const SizedBox(height: 10),
+                      isEdit
+                          ? SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: TextField(
+                                  controller: confirmPasswordController,
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(
+                                        borderSide:
+                                            const BorderSide(color: Colors.black),
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      hintText: 'CONFIRM PASSWORD'),
+                                  style: GoogleFonts.robotoMono(
+                                      fontSize: 16, color: Colors.black)))
+                          : const Text('')
+                    ],
+                  ),
+                ),
+                SizedBox(
+                    height:
+                        (MediaQuery.of(context).size.height - bottom * 2) * 0.04),
+                Container(
                     child: isEdit
                         ? GlobalButton(
                             onPressed: () async {
@@ -151,7 +163,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                         }));
                                     UserApi userReturned =
                                         UserApi.fromJson(response.data);
-
+          
                                     final snackBar = SnackBar(
                                       content: const Text(
                                           'User\'s password updated successfully.'),
