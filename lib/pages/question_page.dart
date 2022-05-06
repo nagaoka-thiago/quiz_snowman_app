@@ -25,8 +25,6 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var bottom = MediaQuery.of(context).viewInsets.bottom;
-
     return SafeArea(
       child: Scaffold(
           backgroundColor: const Color.fromARGB(255, 191, 126, 174),
@@ -71,13 +69,13 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                               )
                             ]),
                           ),
-                          Container(
+                          SizedBox(
                             height: 450,
                             child: ListView.builder(
                                 itemCount: alternatives.length,
                                 itemBuilder: (context, i) {
                                   return Container(
-                                    margin: EdgeInsets.only(bottom: 10),
+                                    margin: const EdgeInsets.only(bottom: 10),
                                     child: GlobalButton(
                                         onPressed: () {
                                           if (current < questions.length) {
@@ -93,7 +91,7 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                         ],
                       ));
                 } else {
-                  return Text('Teste');
+                  return const Center(child: CircularProgressIndicator());
                 }
               })),
     );

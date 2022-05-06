@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_snowman_app/pages/main_page.dart';
 import 'package:quiz_snowman_app/pages/profile_page.dart';
 import 'package:quiz_snowman_app/pages/register_page.dart';
 import '../models/user_api.dart';
 import '../widgets/global/global_button.dart';
-import 'main_page.dart';
 
 class LoginPageWidget extends StatefulWidget {
   const LoginPageWidget({Key? key}) : super(key: key);

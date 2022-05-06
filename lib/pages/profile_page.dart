@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,7 +55,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                     padding: const EdgeInsets.all(24),
                     child: Image.asset(
                       'lib/Assets/ideas.png',
-                      height: (MediaQuery.of(context).size.height - bottom * 2) * 0.2,
+                      height:
+                          (MediaQuery.of(context).size.height - bottom * 2) *
+                              0.2,
                     )),
                 Container(
                   padding: const EdgeInsets.all(16),
@@ -107,8 +110,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                       filled: true,
                                       fillColor: Colors.white,
                                       border: OutlineInputBorder(
-                                        borderSide:
-                                            const BorderSide(color: Colors.black),
+                                        borderSide: const BorderSide(
+                                            color: Colors.black),
                                         borderRadius: BorderRadius.circular(50),
                                       ),
                                       hintText: 'PASSWORD'),
@@ -126,8 +129,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                       filled: true,
                                       fillColor: Colors.white,
                                       border: OutlineInputBorder(
-                                        borderSide:
-                                            const BorderSide(color: Colors.black),
+                                        borderSide: const BorderSide(
+                                            color: Colors.black),
                                         borderRadius: BorderRadius.circular(50),
                                       ),
                                       hintText: 'CONFIRM PASSWORD'),
@@ -138,8 +141,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                   ),
                 ),
                 SizedBox(
-                    height:
-                        (MediaQuery.of(context).size.height - bottom * 2) * 0.04),
+                    height: (MediaQuery.of(context).size.height - bottom * 2) *
+                        0.04),
                 Container(
                     child: isEdit
                         ? GlobalButton(
@@ -163,7 +166,17 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                         }));
                                     UserApi userReturned =
                                         UserApi.fromJson(response.data);
-          
+
+                                    FirebaseFirestore.instance
+                                        .collection('users')
+                                        .doc(userReturned.sId)
+                                        .set({
+                                      "id": userReturned.sId,
+                                      "first_name": userReturned.firstName,
+                                      "last_name": userReturned.lastName,
+                                      "email": userReturned.email,
+                                      "password": userReturned.password
+                                    });
                                     final snackBar = SnackBar(
                                       content: const Text(
                                           'User\'s password updated successfully.'),
