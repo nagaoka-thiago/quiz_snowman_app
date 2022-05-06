@@ -13,7 +13,6 @@ Future<List<QuestionApi>> getQuestions(
           difficulty);
   if (response.statusCode == 200) {
     List listJson = (response.data as List);
-    print(listJson.length);
     return listJson.map((json) => QuestionApi.fromJson(json)).toList();
   }
   return Future.value([]);
