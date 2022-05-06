@@ -38,7 +38,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var bottom = MediaQuery.of(context).viewInsets.bottom; 
+    var bottom = MediaQuery.of(context).viewInsets.bottom;
 
     return SafeArea(
       child: Scaffold(
@@ -114,7 +114,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProfilePageWidget(user: user,)));
+                            builder: (context) => MainPage(user: user)));
                   } on DioError catch (e) {
                     if (e.response!.statusCode == 400) {
                       final snackBar = SnackBar(

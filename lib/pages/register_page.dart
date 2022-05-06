@@ -54,15 +54,16 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor:  const Color.fromARGB(255, 191, 126, 174),
+          backgroundColor: const Color.fromARGB(255, 191, 126, 174),
           body: Center(
             child: Column(
               children: [
                 Padding(
                     padding: const EdgeInsets.all(32),
                     child: Image.asset('lib/Assets/ideas.png',
-                        height: (MediaQuery.of(context).size.height - bottom * 2) *
-                            0.1)),
+                        height:
+                            (MediaQuery.of(context).size.height - bottom * 2) *
+                                0.1)),
                 SizedBox(
                   width: 280,
                   child: Container(
@@ -158,8 +159,8 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                   ),
                 ),
                 SizedBox(
-                    height:
-                        (MediaQuery.of(context).size.height - bottom * 2) * 0.05),
+                    height: (MediaQuery.of(context).size.height - bottom * 2) *
+                        0.05),
                 GlobalButton(
                   text: 'REGISTER',
                   onPressed: () async {
@@ -200,12 +201,11 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               onPressed: () {},
                             ),
                           );
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(snackBar);
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MainPage()));
+                                  builder: (context) => MainPage(user: user)));
                         } else {
                           final snackBar = SnackBar(
                             content: const Text('Passwords do not match.'),
@@ -214,8 +214,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               onPressed: () {},
                             ),
                           );
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(snackBar);
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       } else {
                         final snackBar = SnackBar(
