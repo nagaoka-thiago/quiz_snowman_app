@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_snowman_app/pages/main_page.dart';
+import 'package:quiz_snowman_app/pages/profile_page.dart';
 import 'package:quiz_snowman_app/pages/register_page.dart';
 import 'pages/login_page.dart';
 

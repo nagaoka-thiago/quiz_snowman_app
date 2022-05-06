@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_snowman_app/pages/profile_page.dart';
 import 'package:quiz_snowman_app/pages/register_page.dart';
 import '../models/user_api.dart';
 import '../widgets/global/global_button.dart';
@@ -113,7 +114,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MainPage()));
+                            builder: (context) => ProfilePageWidget(user: user,)));
                   } on DioError catch (e) {
                     if (e.response!.statusCode == 400) {
                       final snackBar = SnackBar(
