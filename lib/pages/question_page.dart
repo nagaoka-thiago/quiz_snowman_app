@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_snowman_app/models/question_api.dart';
 import 'package:quiz_snowman_app/models/user_api.dart';
+import 'package:quiz_snowman_app/pages/score_page.dart';
 import 'package:quiz_snowman_app/widgets/global/global_button.dart';
 
 class QuestionPageWidget extends StatefulWidget {
@@ -87,25 +88,36 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                     child: GlobalButton(
                                         onPressed: () {
                                           if (current <= questions.length) {
-                                            setState(() {
-                                              if (current != questions.length) {
-                                                if (alternatives[i] ==
-                                                    questions[current - 1]
-                                                        .correctAnswer) {
-                                                  correctAnswers++;
-                                                }
+                                            if (alternatives[i] ==
+                                                questions[current - 1]
+                                                    .correctAnswer) {
+                                              setState(() {
+                                                correctAnswers++;
+                                              });
+                                            }
+                                            if (current + 1 <=
+                                                questions.length) {
+                                              setState(() {
                                                 current++;
-                                              } else {
-                                                FirebaseFirestore.instance
-                                                    .collection('users')
-                                                    .doc(widget.user.sId)
-                                                    .update({
-                                                  "quizes":
-                                                      FieldValue.arrayUnion(
-                                                          [correctAnswers])
-                                                });
-                                              }
-                                            });
+                                              });
+                                            } else {
+                                              FirebaseFirestore.instance
+                                                  .collection('users')
+                                                  .doc(widget.user.sId)
+                                                  .update({
+                                                "quizes": FieldValue.arrayUnion(
+                                                    [correctAnswers])
+                                              });
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ScorePageWidget(
+                                                              user: widget.user,
+                                                              score: correctAnswers /
+                                                                  questions
+                                                                      .length)));
+                                            }
                                           }
                                         },
                                         text: alternatives[i]),
