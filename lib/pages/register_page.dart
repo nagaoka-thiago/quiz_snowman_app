@@ -37,6 +37,31 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
     confirmPasswordController = TextEditingController();
   }
 
+  hasEightCaracter() {
+    if (passwordController.text.length >= 8) {
+      return const Icon(Icons.check_circle);
+    } else {
+      return const Icon(Icons.block);
+    }
+  }
+
+  hasSpecialCaracter() {
+    if (passwordController.text.contains(RegExp('^[a-zA-Z0-9_]*')) == false &&
+        passwordController.text.isNotEmpty) {
+      return const Icon(Icons.check_circle);
+    } else {
+      return const Icon(Icons.block);
+    }
+  }
+
+  hasUpperCaseCaracter() {
+    if (passwordController.text.toLowerCase() == passwordController.text && passwordController.text.contains(RegExp(r'[a-z]'))) {
+      return const Icon(Icons.check_circle);
+    } else {
+      return const Icon(Icons.block);
+    }
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -177,23 +202,24 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Icon(Icons.check_box),
-                            Text("At least 8 caracters")
+                          children: [
+                            hasEightCaracter(),
+                            const Text("At least 8 caracters")
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Icon(Icons.check_box),
-                            Text("At least 1 special caracter (Ex: !,@,%,&)")
+                          children: [
+                            hasSpecialCaracter(),
+                            const Text(
+                                "At least 1 special caracter (Ex: !,@,%,&)")
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Icon(Icons.check_box),
-                            Text("At least 1 Uppercase letter")
+                          children: [
+                            hasUpperCaseCaracter(),
+                            const Text("At least 1 Uppercase letter")
                           ],
                         )
                       ],
@@ -224,7 +250,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       }
                       if (!passwordController.text
                           .contains(RegExp('^[a-zA-Z0-9_]*'))) {
-                            showDialog(
+                        showDialog(
                           context: context,
                           builder: (context) {
                             return AlertDialog(
@@ -236,12 +262,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             );
                           },
                         );
-                        
+
                         return;
                       }
                       if (passwordController.text.toLowerCase() ==
                           passwordController.text) {
-                            showDialog(
+                        showDialog(
                           context: context,
                           builder: (context) {
                             return AlertDialog(
@@ -253,7 +279,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             );
                           },
                         );
-                        
+
                         return;
                       }
                       try {
