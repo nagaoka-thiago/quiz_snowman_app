@@ -132,7 +132,35 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                   hintText: 'CONFIRM PASSWORD'),
                               style: GoogleFonts.robotoMono(
                                   fontSize: 16, color: Colors.black)))
-                      : const Text('')
+                      : const Text(''),
+                  const SizedBox(height: 10),
+                  FutureBuilder(
+                      future: FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(widget.user.sId)
+                          .get(),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData) {
+                          final data = snapshot.data;
+                          final scores = data['quizes'] as List;
+
+                          if (scores.isNotEmpty) {
+                            final score = scores.reduce((acc, el) => acc + el);
+                            return Text(
+                                'Average score: ' +
+                                    ((score / scores.length) * 100)
+                                        .toStringAsFixed(2) +
+                                    '%',
+                                style: GoogleFonts.robotoMono(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold));
+                          } else {
+                            return Text('');
+                          }
+                        }
+                        return const Text('');
+                      })
                 ],
               ),
             ),
