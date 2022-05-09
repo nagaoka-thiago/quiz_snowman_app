@@ -39,26 +39,26 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
   hasEightCaracter() {
     if (passwordController.text.length >= 8) {
-      return const Icon(Icons.check_circle);
+      return const Icon(Icons.check_circle, color: Color.fromARGB(255, 23, 121, 27),);
     } else {
-      return const Icon(Icons.block);
+      return const Icon(Icons.block, color: Color.fromARGB(255, 113, 26, 20),);
     }
   }
 
   hasSpecialCaracter() {
     if (passwordController.text.contains(RegExp('^[a-zA-Z0-9_]*')) == false &&
         passwordController.text.isNotEmpty) {
-      return const Icon(Icons.check_circle);
+      return const Icon(Icons.check_circle, color: Color.fromARGB(255, 23, 121, 27),);
     } else {
-      return const Icon(Icons.block);
+      return const Icon(Icons.block, color: Color.fromARGB(255, 113, 26, 20),);
     }
   }
 
   hasUpperCaseCaracter() {
     if (passwordController.text.toLowerCase() == passwordController.text && passwordController.text.contains(RegExp(r'[a-z]'))) {
-      return const Icon(Icons.check_circle);
+      return const Icon(Icons.check_circle, color: Color.fromARGB(255, 23, 121, 27),);
     } else {
-      return const Icon(Icons.block);
+      return const Icon(Icons.block, color: Color.fromARGB(255, 113, 26, 20),);
     }
   }
 
@@ -105,7 +105,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     const BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              labelText: "FIRST NAME")),
+                              hintText: "FIRST NAME")),
                     ),
                   ),
                   SizedBox(
@@ -125,7 +125,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     const BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              labelText: "LAST NAME")),
+                              hintText: "LAST NAME")),
                     ),
                   ),
                   SizedBox(
@@ -145,7 +145,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     const BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              labelText: "E-MAIL")),
+                              hintText: "E-MAIL")),
                     ),
                   ),
                   SizedBox(
@@ -166,7 +166,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     const BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              labelText: "PASSWORD")),
+                              hintText: "PASSWORD")),
                     ),
                   ),
                   SizedBox(
@@ -187,7 +187,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     const BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              labelText: "CONFIRM YOUR PASSWORD")),
+                              hintText: "CONFIRM YOUR PASSWORD")),
                     ),
                   ),
                   SizedBox(
@@ -204,7 +204,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             hasEightCaracter(),
-                            const Text("At least 8 caracters")
+                            const Text("8 caracters")
                           ],
                         ),
                         Row(
@@ -212,14 +212,14 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           children: [
                             hasSpecialCaracter(),
                             const Text(
-                                "At least 1 special caracter (Ex: !,@,%,&)")
+                                "1 special caracter (Ex: !,@,%,&)")
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             hasUpperCaseCaracter(),
-                            const Text("At least 1 Uppercase letter")
+                            const Text("1 Uppercase letter")
                           ],
                         )
                       ],
