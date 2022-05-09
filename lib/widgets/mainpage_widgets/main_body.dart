@@ -54,7 +54,7 @@ class _MainPageBodyState extends State<MainPageBody> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topCenter,
-      child: Expanded(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
