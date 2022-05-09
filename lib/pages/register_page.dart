@@ -191,7 +191,8 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             "first_name": user.firstName,
                             "last_name": user.lastName,
                             "email": user.email,
-                            "password": user.password
+                            "password": user.password,
+                            "quizes": []
                           });
                           final snackBar = SnackBar(
                             content:

@@ -224,14 +224,12 @@ class _MainPageBodyState extends State<MainPageBody> {
                       .join(',');
                   String difficultyToPath = selectedDifficulty.toLowerCase();
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => QuestionPageWidget(
-                        questions: getQuestions(categoriesToPath,
-                            selectedQuestions, difficultyToPath),
-                      ),
-                    ),
-                  );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => QuestionPageWidget(
+                              user: widget.user,
+                              questions: getQuestions(categoriesToPath,
+                                  selectedQuestions, difficultyToPath))));
                 },
               ),
             )

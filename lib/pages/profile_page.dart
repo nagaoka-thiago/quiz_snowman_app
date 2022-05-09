@@ -41,6 +41,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
 
+
     return Container(
       alignment: Alignment.topCenter,
       child: SingleChildScrollView(
