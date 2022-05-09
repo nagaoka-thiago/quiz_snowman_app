@@ -105,8 +105,11 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                                   .collection('users')
                                                   .doc(widget.user.sId)
                                                   .update({
-                                                "quizes": FieldValue.arrayUnion(
-                                                    [correctAnswers])
+                                                "quizes":
+                                                    FieldValue.arrayUnion([
+                                                  correctAnswers /
+                                                      questions.length
+                                                ])
                                               });
                                               Navigator.push(
                                                   context,
