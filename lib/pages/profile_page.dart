@@ -41,7 +41,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
 
-
     return Container(
       alignment: Alignment.topCenter,
       child: SingleChildScrollView(
@@ -167,13 +166,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                               FirebaseFirestore.instance
                                   .collection('users')
                                   .doc(userReturned.sId)
-                                  .set({
-                                "id": userReturned.sId,
-                                "first_name": userReturned.firstName,
-                                "last_name": userReturned.lastName,
-                                "email": userReturned.email,
-                                "password": userReturned.password
-                              });
+                                  .update({"password": userReturned.password});
                               final snackBar = SnackBar(
                                 content: const Text(
                                     'User\'s password updated successfully.'),
@@ -184,6 +177,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                               );
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
+                              setState(() {
+                                isEdit = false;
+                              });
                             } on DioError catch (e) {
                               final snackBar = SnackBar(
                                 content: Text(e.message),
