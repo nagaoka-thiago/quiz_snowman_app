@@ -217,6 +217,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 );
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackBar);
+                                setState(() {
+                                  isEdit = false;
+                                });
                               }
                             },
                             text: 'UPDATE')
