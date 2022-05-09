@@ -170,11 +170,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                     FirebaseFirestore.instance
                                         .collection('users')
                                         .doc(userReturned.sId)
-                                        .set({
-                                      "id": userReturned.sId,
-                                      "first_name": userReturned.firstName,
-                                      "last_name": userReturned.lastName,
-                                      "email": userReturned.email,
+                                        .update({
                                       "password": userReturned.password
                                     });
                                     final snackBar = SnackBar(
