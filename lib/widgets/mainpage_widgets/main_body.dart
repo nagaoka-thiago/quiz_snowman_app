@@ -53,7 +53,7 @@ class _MainPageBodyState extends State<MainPageBody> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color.fromARGB(255, 191, 126, 174),
+      alignment: Alignment.topCenter,
       child: Expanded(
         child: Column(
           children: [
@@ -224,11 +224,14 @@ class _MainPageBodyState extends State<MainPageBody> {
                       .join(',');
                   String difficultyToPath = selectedDifficulty.toLowerCase();
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => QuestionPageWidget(
-                              questions: getQuestions(categoriesToPath,
-                                  selectedQuestions, difficultyToPath))));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => QuestionPageWidget(
+                        questions: getQuestions(categoriesToPath,
+                            selectedQuestions, difficultyToPath),
+                      ),
+                    ),
+                  );
                 },
               ),
             )
