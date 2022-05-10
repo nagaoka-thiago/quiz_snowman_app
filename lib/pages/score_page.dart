@@ -45,26 +45,31 @@ class ScorePageWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                          (score * 100 >= 90
-                                  ? 'GREAT JOB, '
-                                  : score * 100 >= 80 && score * 100 < 90
-                                      ? 'GOOD JOB, '
-                                      : score * 100 >= 70 && score * 100 < 80
-                                          ? 'GOOD EFFORT, '
-                                          : score * 100 >= 60 &&
-                                                  score * 100 < 70
-                                              ? 'LET\'S STUDY MORE, '
-                                              : 'PUTS, ') +
-                              user.firstName!,
-                          style: GoogleFonts.robotoMono(
-                              fontSize: 36, color: Colors.white)),
+                        (score * 100 >= 90
+                                ? 'GREAT JOB, '
+                                : score * 100 >= 80 && score * 100 < 90
+                                    ? 'GOOD JOB, '
+                                    : score * 100 >= 70 && score * 100 < 80
+                                        ? 'GOOD EFFORT, '
+                                        : score * 100 >= 60 && score * 100 < 70
+                                            ? 'LET\'S STUDY MORE, '
+                                            : 'PUTS, ') +
+                            user.firstName!,
+                        style: GoogleFonts.robotoMono(
+                            fontSize: 36, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
                       const SizedBox(height: 68),
-                      Text('GRADE',
-                          style: GoogleFonts.robotoMono(
-                              fontSize: 36, color: Colors.white)),
-                      Text((score * 100).toString() + '%',
-                          style: GoogleFonts.robotoMono(
-                              fontSize: 36, color: Colors.white)),
+                      Text(
+                        'GRADE',
+                        style: GoogleFonts.robotoMono(
+                            fontSize: 36, color: Colors.white),
+                      ),
+                      Text(
+                        (score * 100).toString() + '%',
+                        style: GoogleFonts.robotoMono(
+                            fontSize: 36, color: Colors.white),
+                      ),
                       const SizedBox(height: 31),
                       FaIcon(
                           score * 100 >= 90
