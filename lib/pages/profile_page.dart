@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_snowman_app/models/user_api.dart';
 import 'package:quiz_snowman_app/widgets/global/global_button.dart';
+import 'package:intl/intl.dart';
 
 class ProfilePageWidget extends StatefulWidget {
   final UserApi user;
@@ -145,10 +146,15 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                           final scores = data['quizes'] as List;
 
                           if (scores.isNotEmpty) {
-                            final score = scores.reduce((acc, el) => acc + el);
+                            final scoreList = scores
+                                .map((score) =>
+                                    (score as Map).values.toList()[0])
+                                .toList();
+                            final score =
+                                scoreList.reduce((acc, el) => acc + el);
                             return Text(
                                 'Average score: ' +
-                                    ((score / scores.length) * 100)
+                                    ((score / scoreList.length) * 100)
                                         .toStringAsFixed(2) +
                                     '%',
                                 style: GoogleFonts.robotoMono(
@@ -156,11 +162,80 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold));
                           } else {
-                            return Text('');
+                            return Text('No quizes have been answered yet.',
+                                style: GoogleFonts.robotoMono());
                           }
                         }
                         return const Text('');
-                      })
+                      }),
+                  InkWell(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                  title: Text('Scoreboard',
+                                      style: GoogleFonts.robotoMono()),
+                                  content: FutureBuilder(
+                                      future: FirebaseFirestore.instance
+                                          .collection('users')
+                                          .doc(widget.user.sId)
+                                          .get(),
+                                      builder:
+                                          (context, AsyncSnapshot snapshot) {
+                                        if (snapshot.hasData) {
+                                          final data = snapshot.data;
+                                          final scores = data['quizes'] as List;
+
+                                          if (scores.isNotEmpty) {
+                                            return SingleChildScrollView(
+                                              child: Container(
+                                                height: 300,
+                                                width: 300,
+                                                child: ListView.builder(
+                                                    itemCount: scores.length,
+                                                    itemBuilder: (context, i) {
+                                                      final date = DateFormat(
+                                                              'dd/MM/yyyy')
+                                                          .format(DateTime
+                                                              .parse(((scores[i]
+                                                                          as Map)
+                                                                      .keys
+                                                                      .toList()[
+                                                                  0])));
+                                                      final score =
+                                                          (scores[i] as Map)
+                                                              .values
+                                                              .toList()[0];
+                                                      return ListTile(
+                                                          title: Text(date
+                                                                  .toString() +
+                                                              ': ' +
+                                                              (score * 100)
+                                                                  .toString() +
+                                                              '%'));
+                                                    }),
+                                              ),
+                                            );
+                                          } else {
+                                            return Text(
+                                                'No quizes have been answered yet.',
+                                                style:
+                                                    GoogleFonts.robotoMono());
+                                          }
+                                        }
+                                        return const Text('');
+                                      }));
+                            });
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        child: Text('See scores',
+                            style: GoogleFonts.robotoMono(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
+                      ))
                 ],
               ),
             ),

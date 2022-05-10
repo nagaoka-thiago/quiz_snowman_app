@@ -117,8 +117,11 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                                     .update({
                                                   "quizes":
                                                       FieldValue.arrayUnion([
-                                                    correctAnswers /
-                                                        questions.length
+                                                    {
+                                                      DateTime.now().toString():
+                                                          correctAnswers /
+                                                              questions.length
+                                                    }
                                                   ])
                                                 });
                                                 Navigator.push(
