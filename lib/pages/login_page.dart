@@ -91,7 +91,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 SizedBox(
                   height: (MediaQuery.of(context).size.height - bottom) * 0.02,
                 ),
-                
                 SizedBox(
                   height: (MediaQuery.of(context).size.height - bottom) * 0.02,
                 ),
@@ -108,18 +107,42 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
                       UserApi user = UserApi.fromJson(response.data);
 
-                      final snackBar = SnackBar(
-                        content: const Text('Logged in!'),
-                        action: SnackBarAction(
-                          label: 'Ok',
-                          onPressed: () {},
-                        ),
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                            title: const Icon(
+                              Icons.check_circle_outline_outlined,
+                              size: 250,
+                              color: Color.fromARGB(255, 23, 121, 27),
+                            ),
+                            actions: [
+                              Center(
+                                child: TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              MainPage(user: user),
+                                        ),
+                                      );
+                                    },
+                                    child: Text(
+                                      "OK",
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.robotoMono(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16, color: const Color.fromARGB(255, 23, 121, 27)),
+                                    )),
+                              )
+                            ],
+                          );
+                        },
                       );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MainPage(user: user)));
                     } on DioError catch (e) {
                       if (e.response!.statusCode == 400) {
                         final snackBar = SnackBar(
