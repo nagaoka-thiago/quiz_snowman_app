@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_snowman_app/models/user_api.dart';
 import 'package:quiz_snowman_app/pages/main_page.dart';
@@ -43,7 +44,18 @@ class ScorePageWidget extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('GOOD JOB!',
+                      Text(
+                          (score * 100 >= 90
+                                  ? 'GREAT JOB, '
+                                  : score * 100 >= 80 && score * 100 < 90
+                                      ? 'GOOD JOB, '
+                                      : score * 100 >= 70 && score * 100 < 80
+                                          ? 'GOOD EFFORT, '
+                                          : score * 100 >= 60 &&
+                                                  score * 100 < 70
+                                              ? 'LET\'S STUDY MORE, '
+                                              : 'PUTS, ') +
+                              user.firstName!,
                           style: GoogleFonts.robotoMono(
                               fontSize: 36, color: Colors.white)),
                       const SizedBox(height: 68),
@@ -54,9 +66,18 @@ class ScorePageWidget extends StatelessWidget {
                           style: GoogleFonts.robotoMono(
                               fontSize: 36, color: Colors.white)),
                       const SizedBox(height: 31),
-                      Text('A+',
-                          style: GoogleFonts.robotoMono(
-                              fontSize: 60, color: Colors.white))
+                      FaIcon(
+                          score * 100 >= 90
+                              ? FontAwesomeIcons.a
+                              : score * 100 >= 80 && score * 100 < 90
+                                  ? FontAwesomeIcons.b
+                                  : score * 100 >= 70 && score * 100 < 80
+                                      ? FontAwesomeIcons.c
+                                      : score * 100 >= 60 && score * 100 < 70
+                                          ? FontAwesomeIcons.d
+                                          : FontAwesomeIcons.f,
+                          color: Colors.white,
+                          size: 60)
                     ],
                   ),
                 ),

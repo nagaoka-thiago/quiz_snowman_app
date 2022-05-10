@@ -143,29 +143,29 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                         fontWeight: FontWeight.bold)),
                                 const SizedBox(width: 16),
                                 FaIcon(
-                                    (score / scoreList.length) * 100 >= 93
+                                    (score / scoreList.length) * 100 >= 90
                                         ? FontAwesomeIcons.a
                                         : (score / scoreList.length) * 100 >=
-                                                    85 &&
+                                                    80 &&
                                                 (score / scoreList.length) *
                                                         100 <
-                                                    93
+                                                    90
                                             ? FontAwesomeIcons.b
                                             : (score / scoreList.length) *
                                                             100 >=
-                                                        75 &&
+                                                        70 &&
                                                     (score / scoreList.length) *
                                                             100 <
-                                                        85
+                                                        80
                                                 ? FontAwesomeIcons.c
                                                 : (score / scoreList.length) *
                                                                 100 >=
-                                                            70 &&
+                                                            60 &&
                                                         (score /
                                                                     scoreList
                                                                         .length) *
                                                                 100 <
-                                                            75
+                                                            70
                                                     ? FontAwesomeIcons.d
                                                     : FontAwesomeIcons.f,
                                     color: Colors.white)
@@ -272,15 +272,15 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                     width: 16),
                                                                 FaIcon(
                                                                     score * 100 >=
-                                                                            93
+                                                                            90
                                                                         ? FontAwesomeIcons
                                                                             .a
-                                                                        : score * 100 >= 85 &&
-                                                                                score * 100 < 93
+                                                                        : score * 100 >= 80 &&
+                                                                                score * 100 < 90
                                                                             ? FontAwesomeIcons.b
-                                                                            : score * 100 >= 75 && score * 100 < 85
+                                                                            : score * 100 >= 70 && score * 100 < 80
                                                                                 ? FontAwesomeIcons.c
-                                                                                : score * 100 >= 70 && score * 100 < 75
+                                                                                : score * 100 >= 60 && score * 100 < 70
                                                                                     ? FontAwesomeIcons.d
                                                                                     : FontAwesomeIcons.f,
                                                                     color: Colors.white)
