@@ -39,26 +39,45 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
   hasEightCaracter() {
     if (passwordController.text.length >= 8) {
-      return const Icon(Icons.check_circle, color: Color.fromARGB(255, 23, 121, 27),);
+      return const Icon(
+        Icons.check_circle,
+        color: Color.fromARGB(255, 23, 121, 27),
+      );
     } else {
-      return const Icon(Icons.block, color: Color.fromARGB(255, 113, 26, 20),);
+      return const Icon(
+        Icons.block,
+        color: Color.fromARGB(255, 113, 26, 20),
+      );
     }
   }
 
   hasSpecialCaracter() {
     if (passwordController.text.contains(RegExp('^[a-zA-Z0-9_]*')) == false &&
         passwordController.text.isNotEmpty) {
-      return const Icon(Icons.check_circle, color: Color.fromARGB(255, 23, 121, 27),);
+      return const Icon(
+        Icons.check_circle,
+        color: Color.fromARGB(255, 23, 121, 27),
+      );
     } else {
-      return const Icon(Icons.block, color: Color.fromARGB(255, 113, 26, 20),);
+      return const Icon(
+        Icons.block,
+        color: Color.fromARGB(255, 113, 26, 20),
+      );
     }
   }
 
   hasUpperCaseCaracter() {
-    if (passwordController.text.toLowerCase() == passwordController.text && passwordController.text.contains(RegExp(r'[a-z]'))) {
-      return const Icon(Icons.check_circle, color: Color.fromARGB(255, 23, 121, 27),);
+    if (passwordController.text.toLowerCase() == passwordController.text &&
+        passwordController.text.contains(RegExp(r'[a-z]'))) {
+      return const Icon(
+        Icons.check_circle,
+        color: Color.fromARGB(255, 23, 121, 27),
+      );
     } else {
-      return const Icon(Icons.block, color: Color.fromARGB(255, 113, 26, 20),);
+      return const Icon(
+        Icons.block,
+        color: Color.fromARGB(255, 113, 26, 20),
+      );
     }
   }
 
@@ -211,8 +230,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             hasSpecialCaracter(),
-                            const Text(
-                                "1 special caracter (Ex: !,@,%,&)")
+                            const Text("1 special caracter (Ex: !,@,%,&)")
                           ],
                         ),
                         Row(
@@ -312,16 +330,21 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               "password": user.password,
                               "quizes": []
                             });
-                            final snackBar = SnackBar(
-                              content:
-                                  const Text('User registered with success!'),
-                              action: SnackBarAction(
-                                label: 'Ok',
-                                onPressed: () {},
-                              ),
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text(
+                                    'User registered with success!',
+                                    style: GoogleFonts.robotoMono(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                );
+                              },
                             );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
+                            Future.delayed(
+                                const Duration(milliseconds: 300), () {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
