@@ -136,7 +136,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.robotoMono(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 16, color: const Color.fromARGB(255, 23, 121, 27)),
+                                          fontSize: 24, color: Colors.white),
                                     )),
                               )
                             ],
@@ -145,16 +145,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       );
                     } on DioError catch (e) {
                       if (e.response!.statusCode == 400) {
-                        final snackBar = SnackBar(
-                          content: const Text('Invalid e-mail and password!'),
-                          action: SnackBarAction(
-                            label: 'Ok',
-                            onPressed: () {
-                              // Some code to undo the change.
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+                                title: Text(
+                                  'Invalid e-mail or password!',
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.robotoMono(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16, color: Colors.white),
+                                ),
+                              );
                             },
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          );
                       }
                     }
                   },
@@ -171,6 +176,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   const RegisterPageWidget()));
                     },
                     child: Text('Register',
+                    textAlign: TextAlign.center,
                         style: GoogleFonts.robotoMono(
                             fontWeight: FontWeight.bold, fontSize: 16)))
               ],

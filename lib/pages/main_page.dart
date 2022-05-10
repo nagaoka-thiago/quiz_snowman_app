@@ -91,17 +91,3 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
-
-    // return PageView(
-    //   controller: controller,
-    //   children: <Widget>[
-    //     MainPageBody(user: widget.user),
-    //     // BottonNavegationBarGlobal(),
-    //     ProfilePageWidget(user: widget.user),
-    //   ],
-    // );
-
-
-
-
-// background color const Color.fromARGB(255, 191, 126, 174)
