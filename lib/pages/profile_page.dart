@@ -97,6 +97,150 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                       style: GoogleFonts.robotoMono(
                           color: Colors.white, fontSize: 18)),
                   const SizedBox(height: 12),
+                  const SizedBox(height: 10),
+                  FutureBuilder(
+                      future: FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(widget.user.sId)
+                          .get(),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData) {
+                          final data = snapshot.data;
+                          final scores = data['quizes'] as List;
+
+                          if (scores.isNotEmpty) {
+                            final scoreList = scores
+                                .map((score) =>
+                                    (score as Map).values.toList()[0])
+                                .toList();
+                            final score =
+                                scoreList.reduce((acc, el) => acc + el);
+                            return Text(
+                                'Average score: ' +
+                                    ((score / scoreList.length) * 100)
+                                        .toStringAsFixed(2) +
+                                    '%',
+                                style: GoogleFonts.robotoMono(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold));
+                          } else {
+                            return Text('No quizes have been answered yet.',
+                                style: GoogleFonts.robotoMono());
+                          }
+                        }
+                        return const Text('');
+                      }),
+                  isEdit
+                      ? const Text('')
+                      : InkWell(
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                      title: Text(
+                                        'Scoreboard',
+                                        style: GoogleFonts.robotoMono(
+                                            color: Colors.white, fontSize: 35),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      backgroundColor:
+                                          const Color.fromRGBO(101, 48, 217, 1),
+                                      content: FutureBuilder(
+                                          future: FirebaseFirestore.instance
+                                              .collection('users')
+                                              .doc(widget.user.sId)
+                                              .get(),
+                                          builder: (context,
+                                              AsyncSnapshot snapshot) {
+                                            if (snapshot.hasData) {
+                                              final data = snapshot.data;
+                                              final scores =
+                                                  data['quizes'] as List;
+
+                                              if (scores.isNotEmpty) {
+                                                return SingleChildScrollView(
+                                                  child: SizedBox(
+                                                    height: 300,
+                                                    width: 300,
+                                                    child: ListView.builder(
+                                                        itemCount:
+                                                            scores.length,
+                                                        itemBuilder:
+                                                            (context, i) {
+                                                          final date = DateFormat(
+                                                                  'dd/MM')
+                                                              .format(DateTime
+                                                                  .parse(((scores[
+                                                                              i]
+                                                                          as Map)
+                                                                      .keys
+                                                                      .toList()[0])));
+                                                          final score =
+                                                              (scores[i] as Map)
+                                                                  .values
+                                                                  .toList()[0];
+                                                          return ListTile(
+                                                              title: Container(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    8),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            50),
+                                                                border: const Border(
+                                                                    bottom: BorderSide(
+                                                                        color: Colors
+                                                                            .white),
+                                                                    top: BorderSide(
+                                                                        color: Colors
+                                                                            .white),
+                                                                    right: BorderSide(
+                                                                        color: Colors
+                                                                            .white),
+                                                                    left: BorderSide(
+                                                                        color: Colors
+                                                                            .white))),
+                                                            child: Text(
+                                                                date.toString() +
+                                                                    ': ' +
+                                                                    (score * 100)
+                                                                        .toString() +
+                                                                    '%',
+                                                                style: GoogleFonts.robotoMono(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        20,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold)),
+                                                          ));
+                                                        }),
+                                                  ),
+                                                );
+                                              } else {
+                                                return Text(
+                                                    'No quizes have been answered yet.',
+                                                    style: GoogleFonts
+                                                        .robotoMono());
+                                              }
+                                            }
+                                            return const Text('');
+                                          }));
+                                });
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text('See scores',
+                                style: GoogleFonts.robotoMono(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+                          )),
                   isEdit
                       ? SizedBox(
                           width: MediaQuery.of(context).size.width * 0.6,
@@ -134,108 +278,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                               style: GoogleFonts.robotoMono(
                                   fontSize: 16, color: Colors.black)))
                       : const Text(''),
-                  const SizedBox(height: 10),
-                  FutureBuilder(
-                      future: FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(widget.user.sId)
-                          .get(),
-                      builder: (context, AsyncSnapshot snapshot) {
-                        if (snapshot.hasData) {
-                          final data = snapshot.data;
-                          final scores = data['quizes'] as List;
-
-                          if (scores.isNotEmpty) {
-                            final scoreList = scores
-                                .map((score) =>
-                                    (score as Map).values.toList()[0])
-                                .toList();
-                            final score =
-                                scoreList.reduce((acc, el) => acc + el);
-                            return Text(
-                                'Average score: ' +
-                                    ((score / scoreList.length) * 100)
-                                        .toStringAsFixed(2) +
-                                    '%',
-                                style: GoogleFonts.robotoMono(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold));
-                          } else {
-                            return Text('No quizes have been answered yet.',
-                                style: GoogleFonts.robotoMono());
-                          }
-                        }
-                        return const Text('');
-                      }),
-                  InkWell(
-                      onTap: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                  title: Text('Scoreboard',
-                                      style: GoogleFonts.robotoMono()),
-                                  content: FutureBuilder(
-                                      future: FirebaseFirestore.instance
-                                          .collection('users')
-                                          .doc(widget.user.sId)
-                                          .get(),
-                                      builder:
-                                          (context, AsyncSnapshot snapshot) {
-                                        if (snapshot.hasData) {
-                                          final data = snapshot.data;
-                                          final scores = data['quizes'] as List;
-
-                                          if (scores.isNotEmpty) {
-                                            return SingleChildScrollView(
-                                              child: Container(
-                                                height: 300,
-                                                width: 300,
-                                                child: ListView.builder(
-                                                    itemCount: scores.length,
-                                                    itemBuilder: (context, i) {
-                                                      final date = DateFormat(
-                                                              'dd/MM/yyyy')
-                                                          .format(DateTime
-                                                              .parse(((scores[i]
-                                                                          as Map)
-                                                                      .keys
-                                                                      .toList()[
-                                                                  0])));
-                                                      final score =
-                                                          (scores[i] as Map)
-                                                              .values
-                                                              .toList()[0];
-                                                      return ListTile(
-                                                          title: Text(date
-                                                                  .toString() +
-                                                              ': ' +
-                                                              (score * 100)
-                                                                  .toString() +
-                                                              '%'));
-                                                    }),
-                                              ),
-                                            );
-                                          } else {
-                                            return Text(
-                                                'No quizes have been answered yet.',
-                                                style:
-                                                    GoogleFonts.robotoMono());
-                                          }
-                                        }
-                                        return const Text('');
-                                      }));
-                            });
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        child: Text('See scores',
-                            style: GoogleFonts.robotoMono(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
-                      ))
                 ],
               ),
             ),
