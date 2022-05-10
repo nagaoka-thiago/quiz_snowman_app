@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_snowman_app/models/user_api.dart';
+import 'package:quiz_snowman_app/pages/login_page.dart';
 import 'package:quiz_snowman_app/widgets/global/global_button.dart';
 import 'package:intl/intl.dart';
 
@@ -67,6 +68,19 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Container(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const LoginPageWidget()));
+                        },
+                        icon: const Icon(Icons.logout_outlined)),
+                  ),
                   Text('NAME: ',
                       style: GoogleFonts.robotoMono(
                           color: Colors.white,
