@@ -193,8 +193,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                             color: Colors.white, fontSize: 35),
                                         textAlign: TextAlign.center,
                                       ),
-                                      backgroundColor:
-                                          const Color.fromRGBO(101, 48, 217, 1),
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 191, 126, 174),
                                       content: FutureBuilder(
                                           future: FirebaseFirestore.instance
                                               .collection('users')
@@ -232,13 +232,18 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                           return ListTile(
                                                               title: Container(
                                                             padding:
-                                                                EdgeInsets.all(
-                                                                    8),
+                                                                const EdgeInsets
+                                                                    .all(16),
                                                             decoration: BoxDecoration(
+                                                                color:
+                                                                    const Color.fromRGBO(
+                                                                        101,
+                                                                        48,
+                                                                        217,
+                                                                        0.37),
                                                                 borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            50),
+                                                                    BorderRadius.circular(
+                                                                        50),
                                                                 border: const Border(
                                                                     bottom: BorderSide(
                                                                         color: Colors
@@ -247,12 +252,12 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                         color: Colors
                                                                             .white),
                                                                     right: BorderSide(
-                                                                        color: Colors
-                                                                            .white),
-                                                                    left: BorderSide(
-                                                                        color: Colors
-                                                                            .white))),
+                                                                        color: Colors.white),
+                                                                    left: BorderSide(color: Colors.white))),
                                                             child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
                                                               children: [
                                                                 Text(
                                                                     date.toString() +
