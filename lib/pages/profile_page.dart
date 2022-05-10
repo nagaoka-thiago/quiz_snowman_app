@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_snowman_app/models/user_api.dart';
 import 'package:quiz_snowman_app/pages/login_page.dart';
@@ -129,18 +130,51 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 .toList();
                             final score =
                                 scoreList.reduce((acc, el) => acc + el);
-                            return Text(
-                                'Average score: ' +
-                                    ((score / scoreList.length) * 100)
-                                        .toStringAsFixed(2) +
-                                    '%',
-                                style: GoogleFonts.robotoMono(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold));
+                            return Row(
+                              children: [
+                                Text(
+                                    'Average score: ' +
+                                        ((score / scoreList.length) * 100)
+                                            .toStringAsFixed(2) +
+                                        '%',
+                                    style: GoogleFonts.robotoMono(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold)),
+                                const SizedBox(width: 16),
+                                FaIcon(
+                                    (score / scoreList.length) * 100 >= 93
+                                        ? FontAwesomeIcons.a
+                                        : (score / scoreList.length) * 100 >=
+                                                    85 &&
+                                                (score / scoreList.length) *
+                                                        100 <
+                                                    93
+                                            ? FontAwesomeIcons.b
+                                            : (score / scoreList.length) *
+                                                            100 >=
+                                                        75 &&
+                                                    (score / scoreList.length) *
+                                                            100 <
+                                                        85
+                                                ? FontAwesomeIcons.c
+                                                : (score / scoreList.length) *
+                                                                100 >=
+                                                            70 &&
+                                                        (score /
+                                                                    scoreList
+                                                                        .length) *
+                                                                100 <
+                                                            75
+                                                    ? FontAwesomeIcons.d
+                                                    : FontAwesomeIcons.f,
+                                    color: Colors.white)
+                              ],
+                            );
                           } else {
                             return Text('No quizes have been answered yet.',
-                                style: GoogleFonts.robotoMono());
+                                style: GoogleFonts.robotoMono(
+                                    fontSize: 16, color: Colors.white));
                           }
                         }
                         return const Text('');
@@ -218,20 +252,40 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                     left: BorderSide(
                                                                         color: Colors
                                                                             .white))),
-                                                            child: Text(
-                                                                date.toString() +
-                                                                    ': ' +
-                                                                    (score * 100)
-                                                                        .toString() +
-                                                                    '%',
-                                                                style: GoogleFonts.robotoMono(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        20,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold)),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                    date.toString() +
+                                                                        ': ' +
+                                                                        (score *
+                                                                                100)
+                                                                            .toString() +
+                                                                        '%',
+                                                                    style: GoogleFonts.robotoMono(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            20,
+                                                                        fontWeight:
+                                                                            FontWeight.bold)),
+                                                                const SizedBox(
+                                                                    width: 16),
+                                                                FaIcon(
+                                                                    score * 100 >=
+                                                                            93
+                                                                        ? FontAwesomeIcons
+                                                                            .a
+                                                                        : score * 100 >= 85 &&
+                                                                                score * 100 < 93
+                                                                            ? FontAwesomeIcons.b
+                                                                            : score * 100 >= 75 && score * 100 < 85
+                                                                                ? FontAwesomeIcons.c
+                                                                                : score * 100 >= 70 && score * 100 < 75
+                                                                                    ? FontAwesomeIcons.d
+                                                                                    : FontAwesomeIcons.f,
+                                                                    color: Colors.white)
+                                                              ],
+                                                            ),
                                                           ));
                                                         }),
                                                   ),
@@ -239,8 +293,11 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                               } else {
                                                 return Text(
                                                     'No quizes have been answered yet.',
-                                                    style: GoogleFonts
-                                                        .robotoMono());
+                                                    style:
+                                                        GoogleFonts.robotoMono(
+                                                            fontSize: 16,
+                                                            color:
+                                                                Colors.white));
                                               }
                                             }
                                             return const Text('');
