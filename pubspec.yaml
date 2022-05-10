@@ -45,6 +45,7 @@ dependencies:
   percent_indicator: ^4.0.1
   intl: ^0.17.0
   font_awesome_flutter: ^10.1.0
+  splashscreen:
 
 dev_dependencies:
   flutter_test:
