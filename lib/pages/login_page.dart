@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_snowman_app/pages/main_page.dart';
-import 'package:quiz_snowman_app/pages/profile_page.dart';
 import 'package:quiz_snowman_app/pages/register_page.dart';
 import '../models/user_api.dart';
 import '../widgets/global/button/global_button.dart';
@@ -114,6 +113,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           return AlertDialog(
                             backgroundColor: Colors.transparent,
                             elevation: 0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
                             title: const Icon(
                               Icons.check_circle_outline_outlined,
                               size: 250,
@@ -136,7 +137,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.robotoMono(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 24, color: Colors.white),
+                                          fontSize: 24,
+                                          color: Colors.white),
                                     )),
                               )
                             ],
@@ -146,20 +148,24 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     } on DioError catch (e) {
                       if (e.response!.statusCode == 400) {
                         showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                backgroundColor: const Color.fromARGB(255, 191, 126, 174),
-                                title: Text(
-                                  'Invalid e-mail or password!',
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.robotoMono(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16, color: Colors.white),
-                                ),
-                              );
-                            },
-                          );
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 191, 126, 174),
+                              title: Text(
+                                'Invalid e-mail or password!',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.robotoMono(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white),
+                              ),
+                            );
+                          },
+                        );
                       }
                     }
                   },
@@ -176,7 +182,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   const RegisterPageWidget()));
                     },
                     child: Text('Register',
-                    textAlign: TextAlign.center,
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.robotoMono(
                             fontWeight: FontWeight.bold, fontSize: 16)))
               ],
