@@ -247,12 +247,18 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+                            backgroundColor:
+                                const Color.fromARGB(255, 191, 126, 174),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
                             title: Text(
                               "Password must have at leat 8 caracters!",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.robotoMono(
-                                  fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white,),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
                             ),
                           );
                         },
@@ -266,12 +272,17 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
+                            backgroundColor:
+                                const Color.fromARGB(255, 191, 126, 174),
                             title: Text(
                               "Password must have at least a num-alphabetical carater!",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.robotoMono(
-                                  fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white),
                             ),
                           );
                         },
@@ -285,12 +296,17 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
+                            backgroundColor:
+                                const Color.fromARGB(255, 191, 126, 174),
                             title: Text(
                               "Password must have at least 1 uppercase letter!",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.robotoMono(
-                                  fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white),
                             ),
                           );
                         },
@@ -332,13 +348,17 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50)),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 191, 126, 174),
                                 title: Text(
                                   'User registered with success!',
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.robotoMono(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: 16,
+                                      color: Colors.white),
                                 ),
                               );
                             },
@@ -354,13 +374,17 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50)),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 191, 126, 174),
                                 title: Text(
                                   'Passwords do not match!',
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.robotoMono(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: 16,
+                                      color: Colors.white),
                                 ),
                               );
                             },
@@ -371,12 +395,17 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 191, 126, 174),
                               title: Text(
                                 'Fill all of the fields!',
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.robotoMono(
-                                    fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white),
                               ),
                             );
                           },
@@ -387,12 +416,17 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
+                            backgroundColor:
+                                const Color.fromARGB(255, 191, 126, 174),
                             title: Text(
                               e.response!.data,
                               textAlign: TextAlign.center,
                               style: GoogleFonts.robotoMono(
-                                  fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white),
                             ),
                           );
                         },
