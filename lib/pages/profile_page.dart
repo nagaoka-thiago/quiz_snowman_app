@@ -230,8 +230,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                       .toList()[0])));
                                                           final score =
                                                               (scores[i] as Map)
-                                                                  .values
-                                                                  .toList()[0];
+                                                                      .values
+                                                                      .toList()[
+                                                                  0] as double;
                                                           return ListTile(
                                                               title: Container(
                                                             padding:
@@ -267,7 +268,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                         ': ' +
                                                                         (score *
                                                                                 100)
-                                                                            .toString() +
+                                                                            .toStringAsFixed(
+                                                                                2) +
                                                                         '%',
                                                                     style: GoogleFonts.robotoMono(
                                                                         color: Colors
