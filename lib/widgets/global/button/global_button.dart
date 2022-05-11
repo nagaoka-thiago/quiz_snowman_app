@@ -31,8 +31,7 @@ class _GlobalButtonState extends State<GlobalButton> {
         widget.text,
         textAlign: TextAlign.center,
         minFontSize: 20,
-        style:
-            GoogleFonts.robotoMono(fontWeight: FontWeight.bold),
+        style: GoogleFonts.robotoMono(fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -46,5 +45,7 @@ Color _handleButtonColor(ButtonStatus status) {
       return const Color.fromARGB(255, 93, 6, 0);
     case ButtonStatus.idle:
       return const Color.fromARGB(255, 101, 48, 217);
+    case ButtonStatus.correctOption:
+      return const Color.fromARGB(255, 146, 194, 149);
   }
 }

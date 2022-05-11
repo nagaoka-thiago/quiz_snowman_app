@@ -1,3 +1,3 @@
 enum ButtonStatus {
-  correct, wrong, idle
+  correct, wrong, idle, correctOption
 }
