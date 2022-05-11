@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,6 +24,7 @@ class QuestionPageWidget extends StatefulWidget {
 class _QuestionPageWidgetState extends State<QuestionPageWidget> {
   late int current;
   late int correctAnswers;
+
   List<ButtonStatus?> _buttonStatus = [
     ButtonStatus.idle,
     ButtonStatus.idle,
@@ -59,11 +62,14 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
 
               if (snapshot.hasData) {
                 questions = snapshot.data!;
-                return SingleChildScrollView(
-                  child: Container(
-                      height: MediaQuery.of(context).size.height,
-                      margin:
-                          const EdgeInsets.only(top: 20, left: 20, right: 20),
+                return Container(
+                    height: MediaQuery.of(context).size.height,
+                    margin: const EdgeInsets.only(
+                      top: 20,
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
@@ -90,20 +96,29 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                               borderRadius: BorderRadius.circular(25),
                               color: const Color.fromRGBO(101, 48, 217, 0.37),
                             ),
-                            child: Column(children: [
-                              Text('QUESTION ' + current.toString(),
+                            child: Column(
+                              children: [
+                                Text('QUESTION ' + current.toString(),
+                                    style: GoogleFonts.robotoMono(
+                                        fontSize: 24,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold)),
+                                const SizedBox(height: 20),
+                                Text(
+                                  questions[current - 1].question!,
                                   style: GoogleFonts.robotoMono(
-                                      fontSize: 24,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold)),
-                              const SizedBox(height: 20),
-                              Text(
-                                questions[current - 1].question!,
-                                style: GoogleFonts.robotoMono(
-                                    fontSize: 20, color: Colors.white),
-                                textAlign: TextAlign.justify,
-                              )
-                            ]),
+                                      fontSize: 20, color: Colors.white),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                Container(
+                                  alignment: Alignment.bottomRight,
+                                  child: CircularPercentIndicator(
+                                      radius: 20,
+                                      lineWidth: 6,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(
                             height: 450,
@@ -186,8 +201,8 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                 }),
                           ),
                         ],
-                      )),
-                );
+                      ),
+                    ));
               } else {
                 return const Center(child: CircularProgressIndicator());
               }
