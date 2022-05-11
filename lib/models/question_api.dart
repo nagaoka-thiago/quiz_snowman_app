@@ -7,6 +7,7 @@ class QuestionApi {
   List<String>? tags;
   String? type;
   String? difficulty;
+  late List<String> alternatives;
 
   QuestionApi(
       {this.category,
@@ -27,6 +28,9 @@ class QuestionApi {
     tags = json['tags'].cast<String>();
     type = json['type'];
     difficulty = json['difficulty'];
+    var alternativesList = [correctAnswer!, ...incorrectAnswers!];
+    alternativesList.shuffle();
+    alternatives = alternativesList;
   }
 
   Map<String, dynamic> toJson() {
