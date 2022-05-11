@@ -193,6 +193,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                             color: Colors.white, fontSize: 35),
                                         textAlign: TextAlign.center,
                                       ),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50)),
                                       backgroundColor: const Color.fromARGB(
                                           255, 191, 126, 174),
                                       content: FutureBuilder(
@@ -210,7 +213,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                               if (scores.isNotEmpty) {
                                                 return SingleChildScrollView(
                                                   child: SizedBox(
-                                                    height: 300,
+                                                    height: 500,
                                                     width: 300,
                                                     child: ListView.builder(
                                                         itemCount:
