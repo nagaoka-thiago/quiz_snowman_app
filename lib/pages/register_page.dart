@@ -26,7 +26,6 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     firstNameController = TextEditingController();
@@ -82,7 +81,6 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     firstNameController.dispose();
