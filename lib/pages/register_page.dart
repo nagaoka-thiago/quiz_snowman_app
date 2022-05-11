@@ -365,7 +365,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           );
                           Future.delayed(
                               const Duration(milliseconds: 300), () {});
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => MainPage(user: user)));
