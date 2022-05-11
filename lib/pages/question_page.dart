@@ -58,19 +58,9 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
               future: widget.questions,
               builder: (context, snapshot) {
                 List<QuestionApi> questions = [];
-                List<String> alternatives = [];
 
                 if (snapshot.hasData) {
                   questions = snapshot.data!;
-                  alternatives = [
-                    questions[current - 1].correctAnswer!,
-                    ...questions[current - 1].incorrectAnswers!
-                  ];
-
-                  final reducedButtonStatusList = _buttonStatus.toSet();
-                  if (reducedButtonStatusList.length == 1) {
-                    alternatives.shuffle();
-                  }
                   return SingleChildScrollView(
                     child: Container(
                         height: MediaQuery.of(context).size.height,
@@ -113,16 +103,18 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                             SizedBox(
                               height: 450,
                               child: ListView.builder(
-                                  itemCount: alternatives.length,
+                                  itemCount: questions[current - 1]
+                                      .alternatives
+                                      .length,
                                   itemBuilder: (context, i) {
-                                    // alternatives.shuffle();
                                     return Container(
                                       margin: const EdgeInsets.only(bottom: 10),
                                       child: GlobalButton(
                                           status: _buttonStatus[i],
                                           onPressed: () async {
                                             if (current <= questions.length) {
-                                              if (alternatives[i] ==
+                                              if (questions[current - 1]
+                                                      .alternatives[i] ==
                                                   questions[current - 1]
                                                       .correctAnswer) {
                                                 setState(() {
@@ -171,7 +163,8 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                               }
                                             }
                                           },
-                                          text: alternatives[i]),
+                                          text: questions[current - 1]
+                                              .alternatives[i]),
                                     );
                                   }),
                             ),
