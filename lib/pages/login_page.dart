@@ -124,7 +124,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               Center(
                                 child: TextButton(
                                     onPressed: () {
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
