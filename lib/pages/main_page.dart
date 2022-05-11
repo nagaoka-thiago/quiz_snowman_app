@@ -1,7 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_snowman_app/pages/profile_page.dart';
-import 'package:quiz_snowman_app/widgets/mainpage_widgets/botton_navegation_bar.dart';
 import 'package:quiz_snowman_app/widgets/mainpage_widgets/main_body.dart';
 
 import '../models/user_api.dart';
