@@ -4,7 +4,7 @@ import 'package:multiselect/multiselect.dart';
 import 'package:quiz_snowman_app/functions/questions.dart';
 import 'package:quiz_snowman_app/pages/question_page.dart';
 import '../../models/user_api.dart';
-import '../global/global_button.dart';
+import '../global/button/global_button.dart';
 
 class MainPageBody extends StatefulWidget {
   final UserApi user;
