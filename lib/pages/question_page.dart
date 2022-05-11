@@ -59,7 +59,6 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                 future: widget.questions,
                 builder: (context, snapshot) {
                   List<QuestionApi> questions = [];
-                  List<String> alternatives = [];
                 
                   if (snapshot.hasData) {
                     questions = snapshot.data!;
@@ -111,84 +110,91 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                   Text(
                                     questions[current - 1].question!,
                                     style: GoogleFonts.robotoMono(
-                                        fontSize: 20, color: Colors.white),
-                                    textAlign: TextAlign.justify,
-                                  )
-                                ]),
-                              ),
-                              SizedBox(
-                                height: 450,
-                                child: ListView.builder(
-                                    itemCount: alternatives.length,
-                                    itemBuilder: (context, i) {
-                                      // alternatives.shuffle();
-                                      return Container(
-                                        margin: const EdgeInsets.only(bottom: 10),
-                                        child: GlobalButton(
-                                            status: _buttonStatus[i],
-                                            onPressed: () async {
-                                              if (current <= questions.length) {
-                                                if (alternatives[i] ==
-                                                    questions[current - 1]
-                                                        .correctAnswer) {
-                                                  setState(() {
-                                                    _buttonStatus[i] =
-                                                        ButtonStatus.correct;
-                                                    correctAnswers++;
-                                                  });
-                                                } else {
-                                                  setState(() {
-                                                    _buttonStatus[i] =
-                                                        ButtonStatus.wrong;
-                                                  });
-                                                }
-                                                await Future.delayed(
-                                                    const Duration(seconds: 1));
-                                                _resetButtons();
-                                                if (current + 1 <=
-                                                    questions.length) {
-                                                  setState(() {
-                                                    current++;
-                                                  });
-                                                } else {
-                                                  FirebaseFirestore.instance
-                                                      .collection('users')
-                                                      .doc(widget.user.sId)
-                                                      .update({
-                                                    "quizes":
-                                                        FieldValue.arrayUnion([
-                                                      {
-                                                        DateTime.now().toString():
-                                                            correctAnswers /
-                                                                questions.length
-                                                      }
-                                                    ])
-                                                  });
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ScorePageWidget(
-                                                                  user:
-                                                                      widget.user,
-                                                                  score: correctAnswers /
-                                                                      questions
-                                                                          .length)));
-                                                }
+                                        fontSize: 20, color: Colors.white)),
+                                const SizedBox(height: 20),
+                                Text(
+                                  questions[current - 1].question!,
+                                  style: GoogleFonts.robotoMono(
+                                      fontSize: 20, color: Colors.white),
+                                  textAlign: TextAlign.justify,
+                                )
+                              ]),
+                            ),
+                            SizedBox(
+                              height: 450,
+                              child: ListView.builder(
+                                  itemCount: questions[current - 1]
+                                      .alternatives
+                                      .length,
+                                  itemBuilder: (context, i) {
+                                    return Container(
+                                      margin: const EdgeInsets.only(bottom: 10),
+                                      child: GlobalButton(
+                                          status: _buttonStatus[i],
+                                          onPressed: () async {
+                                            if (current <= questions.length) {
+                                              if (questions[current - 1]
+                                                      .alternatives[i] ==
+                                                  questions[current - 1]
+                                                      .correctAnswer) {
+                                                setState(() {
+                                                  _buttonStatus[i] =
+                                                      ButtonStatus.correct;
+                                                  correctAnswers++;
+                                                });
+                                              } else {
+                                                setState(() {
+                                                  _buttonStatus[i] =
+                                                      ButtonStatus.wrong;
+                                                });
                                               }
-                                            },
-                                            text: alternatives[i]),
-                                      );
-                                    }),
-                              ),
-                            ],
-                          )),
-                    );
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                }),
-          )),
+                                              await Future.delayed(
+                                                  const Duration(seconds: 1));
+                                              _resetButtons();
+                                              if (current + 1 <=
+                                                  questions.length) {
+                                                setState(() {
+                                                  current++;
+                                                });
+                                              } else {
+                                                FirebaseFirestore.instance
+                                                    .collection('users')
+                                                    .doc(widget.user.sId)
+                                                    .update({
+                                                  "quizes":
+                                                      FieldValue.arrayUnion([
+                                                    {
+                                                      DateTime.now().toString():
+                                                          correctAnswers /
+                                                              questions.length
+                                                    }
+                                                  ])
+                                                });
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ScorePageWidget(
+                                                                user:
+                                                                    widget.user,
+                                                                score: correctAnswers /
+                                                                    questions
+                                                                        .length)));
+                                              }
+                                            }
+                                          },
+                                          text: questions[current - 1]
+                                              .alternatives[i]),
+                                    );
+                                  }),
+                            ),
+                          ],
+                        )),
+                  );
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              })),
     );
   }
 }
