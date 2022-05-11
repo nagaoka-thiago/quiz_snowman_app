@@ -38,9 +38,9 @@ class _GlobalButtonState extends State<GlobalButton> {
 Color _handleButtonColor(ButtonStatus status) {
   switch (status) {
     case ButtonStatus.correct:
-      return Colors.green;
+      return const Color.fromARGB(255, 0, 78, 3);
     case ButtonStatus.wrong:
-      return Colors.red;
+      return const Color.fromARGB(255, 93, 6, 0);
     case ButtonStatus.idle:
       return const Color.fromARGB(255, 101, 48, 217);
   }
