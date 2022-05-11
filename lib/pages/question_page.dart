@@ -1,10 +1,13 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_snowman_app/models/question_api.dart';
 import 'package:quiz_snowman_app/models/user_api.dart';
 import 'package:quiz_snowman_app/pages/score_page.dart';
-import 'package:quiz_snowman_app/widgets/global/global_button.dart';
+import 'package:quiz_snowman_app/widgets/global/button/button_status.dart';
+import 'package:quiz_snowman_app/widgets/global/button/global_button.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class QuestionPageWidget extends StatefulWidget {
@@ -21,6 +24,12 @@ class QuestionPageWidget extends StatefulWidget {
 class _QuestionPageWidgetState extends State<QuestionPageWidget> {
   late int current;
   late int correctAnswers;
+  List<ButtonStatus?> _buttonStatus = [
+    ButtonStatus.idle,
+    ButtonStatus.idle,
+    ButtonStatus.idle,
+    ButtonStatus.idle
+  ];
 
   @override
   void initState() {
@@ -31,24 +40,37 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
     correctAnswers = 0;
   }
 
+  void _resetButtons() {
+    _buttonStatus = [
+      ButtonStatus.idle,
+      ButtonStatus.idle,
+      ButtonStatus.idle,
+      ButtonStatus.idle
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           backgroundColor: const Color.fromARGB(255, 191, 126, 174),
-          body: FutureBuilder(
+          body: FutureBuilder<List<QuestionApi>>(
               future: widget.questions,
               builder: (context, snapshot) {
                 List<QuestionApi> questions = [];
                 List<String> alternatives = [];
 
                 if (snapshot.hasData) {
-                  questions = snapshot.data as List<QuestionApi>;
+                  questions = snapshot.data!;
                   alternatives = [
                     questions[current - 1].correctAnswer!,
                     ...questions[current - 1].incorrectAnswers!
                   ];
-                  alternatives.shuffle();
+
+                  final reducedButtonStatusList = _buttonStatus.toSet();
+                  if (reducedButtonStatusList.length == 1) {
+                    alternatives.shuffle();
+                  }
                   return SingleChildScrollView(
                     child: Container(
                         height: MediaQuery.of(context).size.height,
@@ -93,18 +115,30 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                               child: ListView.builder(
                                   itemCount: alternatives.length,
                                   itemBuilder: (context, i) {
+                                    // alternatives.shuffle();
                                     return Container(
                                       margin: const EdgeInsets.only(bottom: 10),
                                       child: GlobalButton(
-                                          onPressed: () {
+                                          status: _buttonStatus[i],
+                                          onPressed: () async {
                                             if (current <= questions.length) {
                                               if (alternatives[i] ==
                                                   questions[current - 1]
                                                       .correctAnswer) {
                                                 setState(() {
+                                                  _buttonStatus[i] =
+                                                      ButtonStatus.correct;
                                                   correctAnswers++;
                                                 });
+                                              } else {
+                                                setState(() {
+                                                  _buttonStatus[i] =
+                                                      ButtonStatus.wrong;
+                                                });
                                               }
+                                              await Future.delayed(
+                                                  const Duration(seconds: 1));
+                                              _resetButtons();
                                               if (current + 1 <=
                                                   questions.length) {
                                                 setState(() {

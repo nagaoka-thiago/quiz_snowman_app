@@ -5,7 +5,7 @@ import 'package:quiz_snowman_app/pages/main_page.dart';
 import 'package:quiz_snowman_app/pages/profile_page.dart';
 import 'package:quiz_snowman_app/pages/register_page.dart';
 import '../models/user_api.dart';
-import '../widgets/global/global_button.dart';
+import '../widgets/global/button/global_button.dart';
 
 class LoginPageWidget extends StatefulWidget {
   const LoginPageWidget({Key? key}) : super(key: key);

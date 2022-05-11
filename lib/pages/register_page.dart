@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/user_api.dart';
-import '../widgets/global/global_button.dart';
+import '../widgets/global/button/global_button.dart';
 import 'main_page.dart';
 
 class RegisterPageWidget extends StatefulWidget {

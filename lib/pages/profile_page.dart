@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_snowman_app/models/user_api.dart';
 import 'package:quiz_snowman_app/pages/login_page.dart';
-import 'package:quiz_snowman_app/widgets/global/global_button.dart';
+import 'package:quiz_snowman_app/widgets/global/button/global_button.dart';
 import 'package:intl/intl.dart';
 
 class ProfilePageWidget extends StatefulWidget {
