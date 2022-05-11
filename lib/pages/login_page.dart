@@ -19,7 +19,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     emailController = TextEditingController();
@@ -28,7 +27,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     emailController.dispose();

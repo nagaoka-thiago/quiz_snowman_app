@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +31,6 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     current = 1;

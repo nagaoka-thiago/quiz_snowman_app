@@ -23,7 +23,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     isEdit = false;
@@ -33,7 +32,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     passwordController.dispose();
