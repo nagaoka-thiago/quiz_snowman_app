@@ -127,6 +127,20 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                                 correctAnswers++;
                                               });
                                             } else {
+                                              for (int j = 0;
+                                                  j < _buttonStatus.length;
+                                                  j++) {
+                                                if (questions[current - 1]
+                                                        .alternatives[j] ==
+                                                    questions[current - 1]
+                                                        .correctAnswer) {
+                                                  setState(() {
+                                                    _buttonStatus[j] =
+                                                        ButtonStatus
+                                                            .correctOption;
+                                                  });
+                                                }
+                                              }
                                               setState(() {
                                                 _buttonStatus[i] =
                                                     ButtonStatus.wrong;

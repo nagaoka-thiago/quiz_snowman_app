@@ -33,19 +33,54 @@ class _MainPageBodyState extends State<MainPageBody> {
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(child: Text("Easy"), value: "Easy"),
-      const DropdownMenuItem(child: Text("Medium"), value: "Medium"),
-      const DropdownMenuItem(child: Text("Hard"), value: "Hard"),
+      const DropdownMenuItem(
+          child: Text(
+            "Easy",
+            textAlign: TextAlign.center,
+          ),
+          value: "Easy"),
+      const DropdownMenuItem(
+          child: Text(
+            "Medium",
+            textAlign: TextAlign.center,
+          ),
+          value: "Medium"),
+      const DropdownMenuItem(
+          child: Text(
+            "Hard",
+            textAlign: TextAlign.center,
+          ),
+          value: "Hard"),
     ];
     return menuItems;
   }
 
   List<DropdownMenuItem<String>> get dropdownQuestionsLimit {
     List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(child: Text("5"), value: "5"),
-      const DropdownMenuItem(child: Text("10"), value: "10"),
-      const DropdownMenuItem(child: Text("15"), value: "15"),
-      const DropdownMenuItem(child: Text("20"), value: "20"),
+      const DropdownMenuItem(
+          child: Text(
+            "5",
+            textAlign: TextAlign.center,
+          ),
+          value: "5"),
+      const DropdownMenuItem(
+          child: Text(
+            "10",
+            textAlign: TextAlign.center,
+          ),
+          value: "10"),
+      const DropdownMenuItem(
+          child: Text(
+            "15",
+            textAlign: TextAlign.center,
+          ),
+          value: "15"),
+      const DropdownMenuItem(
+          child: Text(
+            "20",
+            textAlign: TextAlign.center,
+          ),
+          value: "20"),
     ];
     return menuItems;
   }
@@ -88,38 +123,32 @@ class _MainPageBodyState extends State<MainPageBody> {
                         fontSize: 20,
                         color: Colors.white),
                   ),
-                  SizedBox(
-                    width: 300,
-                    child: DropDownMultiSelect(
-                      onChanged: (List<String> x) {
-                        setState(() {
-                          selectedCategories = x;
-                        });
-                      },
-                      options: categoryList,
-                      selectedValues: selectedCategories,
-                      whenEmpty: 'Categories',
-                      decoration: InputDecoration(
-                        filled: true,
-                        iconColor: const Color.fromARGB(255, 242, 169, 80),
-                        counterStyle: GoogleFonts.robotoMono(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white),
-                        focusedBorder: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50.0),
-                            ),
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(255, 101, 48, 217),
-                                width: 2)),
-                        enabledBorder: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50.0),
-                            ),
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(255, 101, 48, 217),
-                                width: 2)),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 2),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(50))),
+                      width: 300,
+                      child: DropDownMultiSelect(
+                        onChanged: (List<String> x) {
+                          setState(() {
+                            selectedCategories = x;
+                          });
+                        },
+                        options: categoryList,
+                        selectedValues: selectedCategories,
+                        whenEmpty: 'Categories',
+                        decoration: InputDecoration(
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          filled: true,
+                          counterStyle: GoogleFonts.robotoMono(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
@@ -139,26 +168,36 @@ class _MainPageBodyState extends State<MainPageBody> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(16),
-                            child: SizedBox(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.white, width: 2),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(50))),
                               height: 50,
-                              width: 100,
-                              child: DropdownButton(
-                                value: selectedDifficulty,
-                                iconEnabledColor:
-                                    const Color.fromARGB(255, 242, 169, 80),
-                                alignment: AlignmentDirectional.center,
-                                style: (GoogleFonts.robotoMono(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 20,
-                                  color:
+                              width: 110,
+                              child: Center(
+                                child: DropdownButton(
+                                  underline: const SizedBox(),
+                                  value: selectedDifficulty,
+                                  dropdownColor:
+                                      const Color.fromARGB(255, 152, 94, 191),
+                                  iconEnabledColor:
                                       const Color.fromARGB(255, 242, 169, 80),
-                                )),
-                                items: dropdownItems,
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    selectedDifficulty = newValue!;
-                                  });
-                                },
+                                  alignment: AlignmentDirectional.center,
+                                  style: (GoogleFonts.robotoMono(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color:
+                                        const Color.fromARGB(255, 242, 169, 80),
+                                  )),
+                                  items: dropdownItems,
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectedDifficulty = newValue!;
+                                    });
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -177,26 +216,36 @@ class _MainPageBodyState extends State<MainPageBody> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(16),
-                            child: SizedBox(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.white, width: 2),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(50))),
                               height: 50,
-                              width: 50,
-                              child: DropdownButton(
-                                value: selectedQuestions,
-                                iconEnabledColor:
-                                    const Color.fromARGB(255, 242, 169, 80),
-                                alignment: AlignmentDirectional.center,
-                                style: (GoogleFonts.robotoMono(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 20,
-                                  color:
+                              width: 70,
+                              child: Center(
+                                child: DropdownButton(
+                                  underline: const SizedBox(),
+                                  dropdownColor:
+                                      const Color.fromARGB(255, 152, 94, 191),
+                                  value: selectedQuestions,
+                                  iconEnabledColor:
                                       const Color.fromARGB(255, 242, 169, 80),
-                                )),
-                                items: dropdownQuestionsLimit,
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    selectedQuestions = newValue!;
-                                  });
-                                },
+                                  alignment: AlignmentDirectional.center,
+                                  style: (GoogleFonts.robotoMono(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color:
+                                        const Color.fromARGB(255, 242, 169, 80),
+                                  )),
+                                  items: dropdownQuestionsLimit,
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectedQuestions = newValue!;
+                                    });
+                                  },
+                                ),
                               ),
                             ),
                           ),

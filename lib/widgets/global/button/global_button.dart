@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import 'button_status.dart';
 
@@ -24,12 +25,13 @@ class _GlobalButtonState extends State<GlobalButton> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           primary: _handleButtonColor(widget.status!),
-          fixedSize: const Size(250, 70)),
+          minimumSize: const Size(250, 70)),
       onPressed: widget.onPressed,
-      child: Text(
+      child: AutoSizeText(
         widget.text,
-        style:
-            GoogleFonts.robotoMono(fontWeight: FontWeight.bold, fontSize: 32),
+        textAlign: TextAlign.center,
+        minFontSize: 20,
+        style: GoogleFonts.robotoMono(fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -43,5 +45,7 @@ Color _handleButtonColor(ButtonStatus status) {
       return const Color.fromARGB(255, 93, 6, 0);
     case ButtonStatus.idle:
       return const Color.fromARGB(255, 101, 48, 217);
+    case ButtonStatus.correctOption:
+      return const Color.fromARGB(255, 146, 194, 149);
   }
 }
