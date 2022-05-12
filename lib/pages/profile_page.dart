@@ -220,6 +220,14 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                   data['quizes'] as List;
 
                                               if (scores.isNotEmpty) {
+                                                scores.sort((e1, e2) =>
+                                                    (e1 as Map)
+                                                        .keys
+                                                        .toList()[0]
+                                                        .compareTo((e2 as Map)
+                                                            .keys
+                                                            .toList()[0]));
+
                                                 return SingleChildScrollView(
                                                   child: SizedBox(
                                                     height: 500,
@@ -382,8 +390,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                           onPressed: () async {
                             if (passwordController.text.isNotEmpty &&
                                 confirmPasswordController.text.isNotEmpty) {
-                              if (passwordController.text
-                                      .compareTo(confirmPasswordController.text) ==
+                              if (passwordController.text.compareTo(
+                                      confirmPasswordController.text) ==
                                   0) {
                                 UserApi newUser = widget.user;
                                 newUser.password = passwordController.text;
@@ -403,7 +411,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                   FirebaseFirestore.instance
                                       .collection('users')
                                       .doc(userReturned.sId)
-                                      .update({"password": userReturned.password});
+                                      .update(
+                                          {"password": userReturned.password});
                                   final snackBar = SnackBar(
                                     content: const Text(
                                         'User\'s password updated successfully.'),
@@ -449,7 +458,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                   onPressed: () {},
                                 ),
                               );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
                             }
                           },
                           text: 'UPDATE')
@@ -461,10 +471,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                             });
                           },
                         ),
-                        
-                    
                 ),
-                const SizedBox(height: 25,)
+                const SizedBox(
+                  height: 25,
+                )
               ],
             ),
           ],
