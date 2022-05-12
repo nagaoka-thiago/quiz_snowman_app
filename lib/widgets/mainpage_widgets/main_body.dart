@@ -276,6 +276,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => QuestionPageWidget(
+                              difficulty: selectedDifficulty,
                               user: widget.user,
                               questions: getQuestions(categoriesToPath,
                                   selectedQuestions, difficultyToPath))));

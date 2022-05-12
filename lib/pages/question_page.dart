@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +13,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 class QuestionPageWidget extends StatefulWidget {
   final Future<List<QuestionApi>> questions;
   final UserApi user;
+  final String difficulty;
   const QuestionPageWidget(
-      {Key? key, required this.questions, required this.user})
+      {Key? key,
+      required this.questions,
+      required this.user,
+      required this.difficulty})
       : super(key: key);
 
   @override
@@ -41,6 +44,16 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
 
     current = 1;
     correctAnswers = 0;
+  }
+
+  int duration(quizDifficulty) {
+    if (quizDifficulty == "Easy") {
+      return 30;
+    } else if (quizDifficulty == "Medium") {
+      return 20;
+    } else {
+      return 15;
+    }
   }
 
   void _resetButtons() {
@@ -118,11 +131,10 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                   child: CircularCountDownTimer(
                                       width: 30,
                                       height: 30,
-                                      duration: 3,
-                                      isReverse: true,
+                                      duration: duration(widget.difficulty),
                                       strokeWidth: 8,
+                                      isReverse: true,
                                       controller: _controller,
-                                      isReverseAnimation: true,
                                       isTimerTextShown: false,
                                       onComplete: () async {
                                         for (int j = 0;
@@ -136,41 +148,40 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                               _buttonStatus[j] =
                                                   ButtonStatus.correctOption;
                                             });
-                                            await Future.delayed(
-                                              const Duration(seconds: 1),
-                                            );
-                                            _resetButtons();
-                                            if (current < questions.length) {
-                                              setState(() {
-                                                current++;
-                                                _resetButtons();
-                                                _controller.restart();
-                                              });
-                                            } else {
-                                              FirebaseFirestore.instance
-                                                  .collection('users')
-                                                  .doc(widget.user.sId)
-                                                  .update({
-                                                "quizes":
-                                                    FieldValue.arrayUnion([
-                                                  {
-                                                    DateTime.now().toString():
-                                                        correctAnswers /
-                                                            questions.length
-                                                  }
-                                                ])
-                                              });
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          ScorePageWidget(
-                                                              user: widget.user,
-                                                              score: correctAnswers /
-                                                                  questions
-                                                                      .length)));
-                                            }
                                           }
+                                        }
+                                        await Future.delayed(
+                                          const Duration(seconds: 1),
+                                        );
+                                        _resetButtons();
+                                        if (current < questions.length) {
+                                          setState(() {
+                                            current++;
+                                            _resetButtons();
+                                            _controller.restart();
+                                          });
+                                        } else {
+                                          FirebaseFirestore.instance
+                                              .collection('users')
+                                              .doc(widget.user.sId)
+                                              .update({
+                                            "quizes": FieldValue.arrayUnion([
+                                              {
+                                                DateTime.now().toString():
+                                                    correctAnswers /
+                                                        questions.length
+                                              }
+                                            ])
+                                          });
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ScorePageWidget(
+                                                          user: widget.user,
+                                                          score: correctAnswers /
+                                                              questions
+                                                                  .length)));
                                         }
                                       },
                                       fillColor: const Color.fromARGB(
