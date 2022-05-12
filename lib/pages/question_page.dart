@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -113,9 +111,9 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                 Container(
                                   alignment: Alignment.bottomRight,
                                   child: CircularPercentIndicator(
-                                      radius: 20,
-                                      lineWidth: 6,
-                                      ),
+                                    radius: 20,
+                                    lineWidth: 6,
+                                  ),
                                 ),
                               ],
                             ),

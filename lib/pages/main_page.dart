@@ -15,7 +15,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  @override
   int bottomSelectedIndex = 0;
 
   final PageController controller = PageController(
