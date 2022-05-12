@@ -181,6 +181,14 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                                   }
                                                 ])
                                               });
+                                              FirebaseFirestore.instance
+                                                  .collection('leaderboard')
+                                                  .doc()
+                                                  .set({
+                                                'userId':
+                                                    widget.user.sId.toString(),
+                                                'correctAnswers': correctAnswers
+                                              });
                                               Navigator.push(
                                                   context,
                                                   MaterialPageRoute(

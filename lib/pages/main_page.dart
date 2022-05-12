@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_snowman_app/pages/leaderboard_page.dart';
 import 'package:quiz_snowman_app/pages/profile_page.dart';
 import 'package:quiz_snowman_app/widgets/mainpage_widgets/main_body.dart';
 
@@ -30,6 +31,7 @@ class _MainPageState extends State<MainPage> {
       },
       children: <Widget>[
         MainPageBody(user: widget.user),
+        LeaderboardPageWidget(),
         ProfilePageWidget(user: widget.user),
       ],
     );
@@ -72,6 +74,11 @@ class _MainPageState extends State<MainPage> {
           items: const <Widget>[
             Icon(
               Icons.quiz,
+              size: 50,
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
+            Icon(
+              Icons.leaderboard,
               size: 50,
               color: Color.fromARGB(255, 255, 255, 255),
             ),
