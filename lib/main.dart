@@ -26,18 +26,12 @@ class _MyAppState extends State<MyApp> {
       home: SplashScreen(
           seconds: 3,
           navigateAfterSeconds: const LoginPageWidget(),
-          title: Text(
-            'Welcome In Quiz',
-            style: GoogleFonts.robotoMono(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          imageBackground: const NetworkImage(
-              'https://cdn.pixabay.com/photo/2020/09/23/07/53/quiz-5595288_1280.jpg'),
+          imageBackground: const AssetImage(
+              'lib/Assets/splash.png'),
           backgroundColor: Colors.white,
           styleTextUnderTheLoader: const TextStyle(),
           photoSize: 100.0,
-          onClick: () {},
-          loaderColor: Colors.blue),
+          onClick: () {},),
     );
   }
 }
