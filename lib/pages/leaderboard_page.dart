@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import "package:collection/collection.dart";
 
 class LeaderboardPageWidget extends StatefulWidget {
   const LeaderboardPageWidget({Key? key}) : super(key: key);
@@ -50,19 +51,38 @@ class _LeaderboardPageWidgetState extends State<LeaderboardPageWidget> {
                     child: StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance
                             .collection('leaderboard')
-                            .orderBy('correctAnswers', descending: true)
+                            //.orderBy('correctAnswers', descending: true)
                             .snapshots(),
                         builder: (context1, snapshot1) {
                           if (snapshot1.hasData) {
-                            final docs = (snapshot1.data as QuerySnapshot).docs;
+                            var docs = (snapshot1.data as QuerySnapshot).docs;
+
+                            Map docsByUserId = groupBy(
+                                docs,
+                                (el) => ((el as DocumentSnapshot).data()
+                                    as Map)['userId']);
+
+                            Map groupedAndSum = Map();
+                            docsByUserId.forEach((key, value) {
+                              int sum = 0;
+                              (value as List).forEach((element) {
+                                sum = sum + (element['correctAnswers'] as int);
+                              });
+                              groupedAndSum[key] = sum;
+                            });
+
+                            List groupedAndSumSorted = groupedAndSum.entries
+                                .sorted((a, b) => b.value.compareTo(a.value));
+
                             return ListView.builder(
-                                itemCount: docs.length,
+                                itemCount: groupedAndSumSorted.length,
                                 itemBuilder: (context2, i) {
-                                  final mapa = docs[i].data() as Map;
                                   return FutureBuilder(
                                       future: FirebaseFirestore.instance
                                           .collection('users')
-                                          .doc(mapa['userId'])
+                                          .doc((groupedAndSumSorted[i]
+                                                  as MapEntry)
+                                              .key)
                                           .get(),
                                       builder: (context3, snapshot2) {
                                         if (snapshot2.hasData) {
@@ -74,7 +94,9 @@ class _LeaderboardPageWidgetState extends State<LeaderboardPageWidget> {
                                                   'º: ' +
                                                   userName +
                                                   ': ' +
-                                                  mapa['correctAnswers']
+                                                  (groupedAndSumSorted[i]
+                                                          as MapEntry)
+                                                      .value
                                                       .toString(),
                                               style: GoogleFonts.robotoMono(
                                                   fontSize: 30,
