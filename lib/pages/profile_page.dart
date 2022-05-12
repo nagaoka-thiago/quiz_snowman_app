@@ -188,7 +188,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                       title: Text(
                                         'Scoreboard',
                                         style: GoogleFonts.robotoMono(
-                                            color: Colors.white, fontSize: 35),
+                                            color: Colors.white,
+                                            fontSize: 35,
+                                            fontWeight: FontWeight.bold),
                                         textAlign: TextAlign.center,
                                       ),
                                       shape: RoundedRectangleBorder(
