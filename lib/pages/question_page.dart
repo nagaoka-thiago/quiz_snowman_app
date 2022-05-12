@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,6 +32,8 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
     ButtonStatus.idle,
     ButtonStatus.idle
   ];
+  final int _duration = 10;
+  final CountDownController _controller = CountDownController();
 
   @override
   void initState() {
@@ -110,10 +115,67 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                 ),
                                 Container(
                                   alignment: Alignment.bottomRight,
-                                  child: CircularPercentIndicator(
-                                    radius: 20,
-                                    lineWidth: 6,
-                                  ),
+                                  child: CircularCountDownTimer(
+                                      width: 30,
+                                      height: 30,
+                                      duration: 3,
+                                      isReverse: true,
+                                      strokeWidth: 8,
+                                      controller: _controller,
+                                      isReverseAnimation: true,
+                                      isTimerTextShown: false,
+                                      onComplete: () async {
+                                        for (int j = 0;
+                                            j < _buttonStatus.length;
+                                            j++) {
+                                          if (questions[current - 1]
+                                                  .alternatives[j] ==
+                                              questions[current - 1]
+                                                  .correctAnswer) {
+                                            setState(() {
+                                              _buttonStatus[j] =
+                                                  ButtonStatus.correctOption;
+                                            });
+                                            await Future.delayed(
+                                              const Duration(seconds: 1),
+                                            );
+                                            _resetButtons();
+                                            if (current < questions.length) {
+                                              setState(() {
+                                                current++;
+                                                _resetButtons();
+                                                _controller.restart();
+                                              });
+                                            } else {
+                                              FirebaseFirestore.instance
+                                                  .collection('users')
+                                                  .doc(widget.user.sId)
+                                                  .update({
+                                                "quizes":
+                                                    FieldValue.arrayUnion([
+                                                  {
+                                                    DateTime.now().toString():
+                                                        correctAnswers /
+                                                            questions.length
+                                                  }
+                                                ])
+                                              });
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ScorePageWidget(
+                                                              user: widget.user,
+                                                              score: correctAnswers /
+                                                                  questions
+                                                                      .length)));
+                                            }
+                                          }
+                                        }
+                                      },
+                                      fillColor: const Color.fromARGB(
+                                          255, 242, 169, 80),
+                                      ringColor: Colors.white),
                                 ),
                               ],
                             ),
@@ -147,11 +209,13 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                                         .alternatives[j] ==
                                                     questions[current - 1]
                                                         .correctAnswer) {
-                                                  setState(() {
-                                                    _buttonStatus[j] =
-                                                        ButtonStatus
-                                                            .correctOption;
-                                                  });
+                                                  setState(
+                                                    () {
+                                                      _buttonStatus[j] =
+                                                          ButtonStatus
+                                                              .correctOption;
+                                                    },
+                                                  );
                                                 }
                                               }
                                               setState(() {
@@ -166,6 +230,7 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
                                                 questions.length) {
                                               setState(() {
                                                 current++;
+                                                _controller.restart();
                                               });
                                             } else {
                                               FirebaseFirestore.instance
