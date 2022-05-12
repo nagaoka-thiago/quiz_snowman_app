@@ -233,25 +233,24 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                     height: 500,
                                                     width: 300,
                                                     child: ListView.builder(
-                                                        itemCount:
-                                                            scores.length,
-                                                        itemBuilder:
-                                                            (context, i) {
-                                                          final date = DateFormat(
-                                                                  'dd/MM')
-                                                              .format(DateTime
-                                                                  .parse(((scores[
-                                                                              i]
-                                                                          as Map)
-                                                                      .keys
-                                                                      .toList()[0])));
-                                                          final score =
-                                                              (scores[i] as Map)
-                                                                      .values
-                                                                      .toList()[
-                                                                  0] as double;
-                                                          return ListTile(
-                                                              title: Container(
+                                                      itemCount: scores.length,
+                                                      itemBuilder:
+                                                          (context, i) {
+                                                        final date = DateFormat(
+                                                                'dd/MM')
+                                                            .format(DateTime
+                                                                .parse(((scores[
+                                                                            i]
+                                                                        as Map)
+                                                                    .keys
+                                                                    .toList()[0])));
+                                                        final score =
+                                                            (scores[i] as Map)
+                                                                    .values
+                                                                    .toList()[0]
+                                                                as double;
+                                                        return ListTile(
+                                                          title: Container(
                                                             padding:
                                                                 const EdgeInsets
                                                                     .all(16),
@@ -313,8 +312,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                     color: Colors.white)
                                                               ],
                                                             ),
-                                                          ));
-                                                        }),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
                                                 );
                                               } else {
