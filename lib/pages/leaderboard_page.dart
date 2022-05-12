@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import "package:collection/collection.dart";
 
@@ -40,13 +41,18 @@ class _LeaderboardPageWidgetState extends State<LeaderboardPageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const FaIcon(
+                    FontAwesomeIcons.crown,
+                    color: Color.fromARGB(255, 242, 169, 80),
+                    size: 60,
+                  ),
                   Text('Leaderboard',
                       style: GoogleFonts.robotoMono(
-                          fontSize: 35,
+                          fontSize: 24,
                           color: Colors.white,
                           fontWeight: FontWeight.bold)),
                   Container(
-                    height: 300,
+                    height: 250,
                     margin: const EdgeInsets.only(top: 20),
                     child: StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance
@@ -89,19 +95,45 @@ class _LeaderboardPageWidgetState extends State<LeaderboardPageWidget> {
                                           final userName = ((snapshot2.data
                                                   as DocumentSnapshot)
                                               .data() as Map)['first_name'];
-                                          return Text(
-                                              (i + 1).toString() +
-                                                  'º: ' +
-                                                  userName +
-                                                  ': ' +
-                                                  (groupedAndSumSorted[i]
-                                                          as MapEntry)
-                                                      .value
-                                                      .toString(),
-                                              style: GoogleFonts.robotoMono(
-                                                  fontSize: 30,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold));
+                                          return Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.9,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                color: const Color.fromARGB(
+                                                    255, 191, 126, 174),
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                  Radius.circular(50),
+                                                ),
+                                                border: Border.all(
+                                                    color: Colors.amber),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                    (i + 1).toString() +
+                                                        'º ' +
+                                                        userName +
+                                                        ': ' +
+                                                        (groupedAndSumSorted[i]
+                                                                as MapEntry)
+                                                            .value
+                                                            .toString(),
+                                                    textAlign: TextAlign.center,
+                                                    style:
+                                                        GoogleFonts.robotoMono(
+                                                            fontSize: 20,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                              ),
+                                            ),
+                                          );
                                         } else {
                                           return const Text('');
                                         }
