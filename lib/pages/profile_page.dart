@@ -57,7 +57,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                       (MediaQuery.of(context).size.height - bottom * 2) * 0.2,
                 )),
             Container(
-              padding: const EdgeInsets.all(16),
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
@@ -68,6 +67,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    padding: const EdgeInsets.only(right: 10, top: 5),
                     alignment: Alignment.topRight,
                     child: IconButton(
                         color: Colors.white,
@@ -80,33 +80,41 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                         },
                         icon: const Icon(Icons.logout_outlined)),
                   ),
-                  Text('NAME: ',
-                      style: GoogleFonts.robotoMono(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold)),
+                  Text(
+                    'NAME: ',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.robotoMono(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 3),
                   Text(widget.user.firstName!,
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.robotoMono(
                           color: Colors.white, fontSize: 18)),
                   const SizedBox(height: 12),
                   Text('LAST NAME: ',
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.robotoMono(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold)),
                   const SizedBox(height: 3),
                   Text(widget.user.lastName!,
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.robotoMono(
                           color: Colors.white, fontSize: 18)),
                   const SizedBox(height: 12),
                   Text('E-MAIL: ',
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.robotoMono(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold)),
                   const SizedBox(height: 3),
                   Text(widget.user.email!,
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.robotoMono(
                           color: Colors.white, fontSize: 18)),
                   const SizedBox(height: 12),
@@ -128,7 +136,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 .toList();
                             final score =
                                 scoreList.reduce((acc, el) => acc + el);
-                            return Row(
+                            return Column(
                               children: [
                                 Text(
                                     'Average score: ' +
@@ -139,34 +147,35 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                         fontSize: 20,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold)),
-                                const SizedBox(width: 16),
+                                const SizedBox(height: 16),
                                 FaIcon(
-                                    (score / scoreList.length) * 100 >= 90
-                                        ? FontAwesomeIcons.a
-                                        : (score / scoreList.length) * 100 >=
-                                                    80 &&
-                                                (score / scoreList.length) *
-                                                        100 <
-                                                    90
-                                            ? FontAwesomeIcons.b
-                                            : (score / scoreList.length) *
-                                                            100 >=
-                                                        70 &&
-                                                    (score / scoreList.length) *
-                                                            100 <
-                                                        80
-                                                ? FontAwesomeIcons.c
-                                                : (score / scoreList.length) *
-                                                                100 >=
-                                                            60 &&
-                                                        (score /
-                                                                    scoreList
-                                                                        .length) *
-                                                                100 <
-                                                            70
-                                                    ? FontAwesomeIcons.d
-                                                    : FontAwesomeIcons.f,
-                                    color: Colors.white)
+                                  (score / scoreList.length) * 100 >= 90
+                                      ? FontAwesomeIcons.a
+                                      : (score / scoreList.length) * 100 >=
+                                                  80 &&
+                                              (score / scoreList.length) * 100 <
+                                                  90
+                                          ? FontAwesomeIcons.b
+                                          : (score / scoreList.length) * 100 >=
+                                                      70 &&
+                                                  (score / scoreList.length) *
+                                                          100 <
+                                                      80
+                                              ? FontAwesomeIcons.c
+                                              : (score / scoreList.length) *
+                                                              100 >=
+                                                          60 &&
+                                                      (score /
+                                                                  scoreList
+                                                                      .length) *
+                                                              100 <
+                                                          70
+                                                  ? FontAwesomeIcons.d
+                                                  : FontAwesomeIcons.f,
+                                  color:
+                                      const Color.fromARGB(255, 242, 169, 80),
+                                  size: 56,
+                                ),
                               ],
                             );
                           } else {
@@ -365,91 +374,98 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
             SizedBox(
                 height:
                     (MediaQuery.of(context).size.height - bottom * 2) * 0.04),
-            Container(
-              child: isEdit
-                  ? GlobalButton(
-                      onPressed: () async {
-                        if (passwordController.text.isNotEmpty &&
-                            confirmPasswordController.text.isNotEmpty) {
-                          if (passwordController.text
-                                  .compareTo(confirmPasswordController.text) ==
-                              0) {
-                            UserApi newUser = widget.user;
-                            newUser.password = passwordController.text;
-                            try {
-                              Response response = await Dio().patch(
-                                  'https://academy-auth.herokuapp.com/update',
-                                  data: {
-                                    'email': newUser.email,
-                                    'new_password': newUser.password
-                                  },
-                                  options: Options(headers: {
-                                    'x-access-token': newUser.token
-                                  }));
-                              UserApi userReturned =
-                                  UserApi.fromJson(response.data);
+            Column(
+              children: [
+                Container(
+                  child: isEdit
+                      ? GlobalButton(
+                          onPressed: () async {
+                            if (passwordController.text.isNotEmpty &&
+                                confirmPasswordController.text.isNotEmpty) {
+                              if (passwordController.text
+                                      .compareTo(confirmPasswordController.text) ==
+                                  0) {
+                                UserApi newUser = widget.user;
+                                newUser.password = passwordController.text;
+                                try {
+                                  Response response = await Dio().patch(
+                                      'https://academy-auth.herokuapp.com/update',
+                                      data: {
+                                        'email': newUser.email,
+                                        'new_password': newUser.password
+                                      },
+                                      options: Options(headers: {
+                                        'x-access-token': newUser.token
+                                      }));
+                                  UserApi userReturned =
+                                      UserApi.fromJson(response.data);
 
-                              FirebaseFirestore.instance
-                                  .collection('users')
-                                  .doc(userReturned.sId)
-                                  .update({"password": userReturned.password});
+                                  FirebaseFirestore.instance
+                                      .collection('users')
+                                      .doc(userReturned.sId)
+                                      .update({"password": userReturned.password});
+                                  final snackBar = SnackBar(
+                                    content: const Text(
+                                        'User\'s password updated successfully.'),
+                                    action: SnackBarAction(
+                                      label: 'Ok',
+                                      onPressed: () {},
+                                    ),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                  setState(() {
+                                    isEdit = false;
+                                  });
+                                } on DioError catch (e) {
+                                  final snackBar = SnackBar(
+                                    content: Text(e.message),
+                                    action: SnackBarAction(
+                                      label: 'Ok',
+                                      onPressed: () {},
+                                    ),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                }
+                              } else {
+                                final snackBar = SnackBar(
+                                  content: const Text(
+                                      'Your passwords don\'t match eachother.'),
+                                  action: SnackBarAction(
+                                    label: 'Ok',
+                                    onPressed: () {},
+                                  ),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                            } else {
                               final snackBar = SnackBar(
                                 content: const Text(
-                                    'User\'s password updated successfully.'),
+                                    'You need to fill your new password and confirm it.'),
                                 action: SnackBarAction(
                                   label: 'Ok',
                                   onPressed: () {},
                                 ),
                               );
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                              setState(() {
-                                isEdit = false;
-                              });
-                            } on DioError catch (e) {
-                              final snackBar = SnackBar(
-                                content: Text(e.message),
-                                action: SnackBarAction(
-                                  label: 'Ok',
-                                  onPressed: () {},
-                                ),
-                              );
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
                             }
-                          } else {
-                            final snackBar = SnackBar(
-                              content: const Text(
-                                  'Your passwords don\'t match eachother.'),
-                              action: SnackBarAction(
-                                label: 'Ok',
-                                onPressed: () {},
-                              ),
-                            );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
-                          }
-                        } else {
-                          final snackBar = SnackBar(
-                            content: const Text(
-                                'You need to fill your new password and confirm it.'),
-                            action: SnackBarAction(
-                              label: 'Ok',
-                              onPressed: () {},
-                            ),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        }
-                      },
-                      text: 'UPDATE')
-                  : GlobalButton(
-                      text: 'EDIT INFO',
-                      onPressed: () {
-                        setState(() {
-                          isEdit = true;
-                        });
-                      },
-                    ),
+                          },
+                          text: 'UPDATE')
+                      : GlobalButton(
+                          text: 'CHANGE PASSWORD',
+                          onPressed: () {
+                            setState(() {
+                              isEdit = true;
+                            });
+                          },
+                        ),
+                        
+                    
+                ),
+                const SizedBox(height: 25,)
+              ],
             ),
           ],
         ),
