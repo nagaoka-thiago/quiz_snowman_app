@@ -184,7 +184,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                     fontSize: 16, color: Colors.white));
                           }
                         }
-                        return const Text('');
+                        return const CircularProgressIndicator();
                       }),
                   isEdit
                       ? const Text('')
@@ -240,7 +240,11 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
 
                                                 return SingleChildScrollView(
                                                   child: SizedBox(
-                                                    height: MediaQuery.of(context).size.height * 0.9,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.9,
                                                     width:
                                                         MediaQuery.of(context)
                                                                 .size
@@ -348,7 +352,11 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                 Colors.white));
                                               }
                                             }
-                                            return const Text('');
+                                            return const SizedBox(
+                                                width: 100,
+                                                height: 300,
+                                                child:
+                                                    CircularProgressIndicator());
                                           }));
                                 });
                           },
