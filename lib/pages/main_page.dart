@@ -64,7 +64,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 191, 126, 174),
-      body: buildPageView(),
+      body: SafeArea(child: buildPageView()),
       bottomNavigationBar: CurvedNavigationBar(
         index: bottomSelectedIndex,
         onTap: (index) {
