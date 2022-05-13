@@ -31,15 +31,16 @@ class _LeaderboardPageWidgetState extends State<LeaderboardPageWidget> {
                       (MediaQuery.of(context).size.height - bottom * 2) * 0.2,
                 )),
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(8),
               width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.53,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: const Color.fromRGBO(101, 48, 217, 0.37),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const FaIcon(
                     FontAwesomeIcons.crown,
@@ -52,8 +53,8 @@ class _LeaderboardPageWidgetState extends State<LeaderboardPageWidget> {
                           color: Colors.white,
                           fontWeight: FontWeight.bold)),
                   Container(
-                    height: 250,
-                    margin: const EdgeInsets.only(top: 20),
+                    height: MediaQuery.of(context).size.height * 0.35,
+                    margin: const EdgeInsets.only(top: 16),
                     child: StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance
                             .collection('leaderboard')
