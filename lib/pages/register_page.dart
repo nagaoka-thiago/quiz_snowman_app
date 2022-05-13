@@ -50,7 +50,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
   }
 
   hasSpecialCaracter() {
-    if (passwordController.text.contains(RegExp('^[a-zA-Z0-9_]*')) == false &&
+    if (passwordController.text.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]')) &&
         passwordController.text.isNotEmpty) {
       return const Icon(
         Icons.check_circle,
@@ -65,8 +65,8 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
   }
 
   hasUpperCaseCaracter() {
-    if (passwordController.text.toLowerCase() == passwordController.text &&
-        passwordController.text.contains(RegExp(r'[a-z]'))) {
+    if (passwordController.text.isNotEmpty &&
+        passwordController.text.contains(RegExp(r'[A-Z]')) == true) {
       return const Icon(
         Icons.check_circle,
         color: Color.fromARGB(255, 23, 121, 27),
