@@ -194,19 +194,29 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                      title: Text(
-                                        'Scoreboard',
-                                        style: GoogleFonts.robotoMono(
-                                            color: Colors.white,
-                                            fontSize: 35,
-                                            fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.center,
+                                      title: Column(
+                                        children: [
+                                          const Icon(
+                                            Icons.history,
+                                            color: Color.fromARGB(
+                                                255, 242, 169, 80),
+                                            size: 60,
+                                          ),
+                                          Text(
+                                            'Scoreboard',
+                                            style: GoogleFonts.robotoMono(
+                                                color: Colors.white,
+                                                fontSize: 35,
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
                                       ),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(50)),
                                       backgroundColor: const Color.fromARGB(
-                                          255, 191, 126, 174),
+                                          255, 152, 94, 191),
                                       content: FutureBuilder(
                                           future: FirebaseFirestore.instance
                                               .collection('users')
@@ -230,8 +240,12 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
 
                                                 return SingleChildScrollView(
                                                   child: SizedBox(
-                                                    height: 500,
-                                                    width: 300,
+                                                    height: MediaQuery.of(context).size.height * 0.9,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.9,
                                                     child: ListView.builder(
                                                       itemCount: scores.length,
                                                       itemBuilder:
@@ -251,29 +265,35 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                 as double;
                                                         return ListTile(
                                                           title: Container(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.95,
                                                             padding:
                                                                 const EdgeInsets
                                                                     .all(16),
                                                             decoration: BoxDecoration(
-                                                                color:
-                                                                    const Color.fromRGBO(
-                                                                        101,
-                                                                        48,
-                                                                        217,
-                                                                        0.37),
+                                                                color: const Color.fromARGB(
+                                                                    255, 191, 126, 174),
                                                                 borderRadius:
                                                                     BorderRadius.circular(
                                                                         50),
                                                                 border: const Border(
                                                                     bottom: BorderSide(
-                                                                        color: Colors
-                                                                            .white),
+                                                                        color: Color.fromARGB(
+                                                                            255,
+                                                                            242,
+                                                                            169,
+                                                                            80)),
                                                                     top: BorderSide(
-                                                                        color: Colors
-                                                                            .white),
-                                                                    right: BorderSide(
-                                                                        color: Colors.white),
-                                                                    left: BorderSide(color: Colors.white))),
+                                                                        color: Color.fromARGB(
+                                                                            255,
+                                                                            242,
+                                                                            169,
+                                                                            80)),
+                                                                    right: BorderSide(color: Color.fromARGB(255, 242, 169, 80)),
+                                                                    left: BorderSide(color: Color.fromARGB(255, 242, 169, 80)))),
                                                             child: Row(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
@@ -285,7 +305,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                         (score *
                                                                                 100)
                                                                             .toStringAsFixed(
-                                                                                2) +
+                                                                                1) +
                                                                         '%',
                                                                     style: GoogleFonts.robotoMono(
                                                                         color: Colors
@@ -309,7 +329,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                                 : score * 100 >= 60 && score * 100 < 70
                                                                                     ? FontAwesomeIcons.d
                                                                                     : FontAwesomeIcons.f,
-                                                                    color: Colors.white)
+                                                                    color: const Color.fromARGB(255, 242, 169, 80))
                                                               ],
                                                             ),
                                                           ),
