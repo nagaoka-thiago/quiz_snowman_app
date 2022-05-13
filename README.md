@@ -1,6 +1,8 @@
 # Quiz Snowman App
 
-This project was proposed on a training course organized by Snowman Labs. Its main purpose is to allow users to do quizes, see their scores on previous quizes and, if the number of correct answers is high enough, see if this is on top of the leaderboard. This app consumes a public API, its url is: https://the-trivia-api.com/
+This project was proposed on a training course organized by Snowman Labs. Its main purpose is to allow users to do quizes, see their scores on previous quizes and, if the number of correct answers is high enough, see if this is on top of the leaderboard. This app consumes a public API, its url is: https://the-trivia-api.com/.
+
+It was developed by Rodolfo Bittar Kunzel and Thiago Nagaoka.
 
 You need to login on our app, to do it you need to register first, and then use it to login. The login and registration pages are illustrated bellow.
 
