@@ -35,7 +35,6 @@ class _QuestionPageWidgetState extends State<QuestionPageWidget> {
     ButtonStatus.idle,
     ButtonStatus.idle
   ];
-  final int _duration = 10;
   final CountDownController _controller = CountDownController();
 
   @override

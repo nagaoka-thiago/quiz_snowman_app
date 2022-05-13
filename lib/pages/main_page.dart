@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
       },
       children: <Widget>[
         MainPageBody(user: widget.user),
-        LeaderboardPageWidget(),
+        const LeaderboardPageWidget(),
         ProfilePageWidget(user: widget.user),
       ],
     );
