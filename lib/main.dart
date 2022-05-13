@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'pages/login_page.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:splashscreen/splashscreen.dart';
 
 void main() async {
@@ -24,14 +24,14 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(
-          seconds: 3,
-          navigateAfterSeconds: const LoginPageWidget(),
-          imageBackground: const AssetImage(
-              'lib/Assets/splash.png'),
-          backgroundColor: Colors.white,
-          styleTextUnderTheLoader: const TextStyle(),
-          photoSize: 100.0,
-          onClick: () {},),
+        seconds: 3,
+        navigateAfterSeconds: const LoginPageWidget(),
+        imageBackground: const AssetImage('lib/Assets/splash.png'),
+        backgroundColor: Colors.white,
+        styleTextUnderTheLoader: const TextStyle(),
+        photoSize: 100.0,
+        onClick: () {},
+      ),
     );
   }
 }

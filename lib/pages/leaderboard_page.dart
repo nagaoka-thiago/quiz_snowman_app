@@ -68,12 +68,12 @@ class _LeaderboardPageWidgetState extends State<LeaderboardPageWidget> {
                                 (el) => ((el as DocumentSnapshot).data()
                                     as Map)['userId']);
 
-                            Map groupedAndSum = Map();
+                            Map groupedAndSum = {};
                             docsByUserId.forEach((key, value) {
                               int sum = 0;
-                              (value as List).forEach((element) {
+                              for (var element in (value as List)) {
                                 sum = sum + (element['correctAnswers'] as int);
-                              });
+                              }
                               groupedAndSum[key] = sum;
                             });
 
