@@ -140,7 +140,7 @@ class _LeaderboardPageWidgetState extends State<LeaderboardPageWidget> {
                                       });
                                 });
                           } else {
-                            return const Text('');
+                            return const CircularProgressIndicator();
                           }
                         }),
                   )
