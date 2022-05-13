@@ -37,11 +37,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 191, 126, 174),
-        body: SingleChildScrollView(
-          child: Center(
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,6 +56,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 SizedBox(
                   width: 280,
                   child: TextField(
+                    autocorrect: false,
                     controller: emailController,
                     decoration: InputDecoration(
                         filled: true,

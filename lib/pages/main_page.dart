@@ -62,36 +62,34 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 191, 126, 174),
-        body: buildPageView(),
-        bottomNavigationBar: CurvedNavigationBar(
-          index: bottomSelectedIndex,
-          onTap: (index) {
-            bottomTapped(index);
-          },
-          items: const <Widget>[
-            Icon(
-              Icons.quiz,
-              size: 50,
-              color: Color.fromARGB(255, 255, 255, 255),
-            ),
-            Icon(
-              Icons.leaderboard,
-              size: 50,
-              color: Color.fromARGB(255, 255, 255, 255),
-            ),
-            Icon(
-              Icons.person,
-              size: 50,
-              color: Color.fromARGB(255, 255, 255, 255),
-            ),
-          ],
-          buttonBackgroundColor: const Color.fromARGB(255, 152, 94, 191),
-          color: const Color.fromARGB(255, 152, 94, 191),
-          backgroundColor: Colors.transparent,
-        ),
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 191, 126, 174),
+      body: buildPageView(),
+      bottomNavigationBar: CurvedNavigationBar(
+        index: bottomSelectedIndex,
+        onTap: (index) {
+          bottomTapped(index);
+        },
+        items: const <Widget>[
+          Icon(
+            Icons.quiz,
+            size: 50,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+          Icon(
+            Icons.leaderboard,
+            size: 50,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+          Icon(
+            Icons.person,
+            size: 50,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+        ],
+        buttonBackgroundColor: const Color.fromARGB(255, 152, 94, 191),
+        color: const Color.fromARGB(255, 152, 94, 191),
+        backgroundColor: Colors.transparent,
       ),
     );
   }
